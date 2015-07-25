@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  KKMTracingLetterTraceViewController.h
 //  TracingLetter
 //
 //  Created by Mohan, Kishore Kumar on 7/23/15.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface KKMTracingLetterTraceViewController : UIViewController
 
+@property (nonatomic, strong) NSString *plistKey;
 
 @end
 

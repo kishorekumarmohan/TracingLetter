@@ -9,12 +9,17 @@
 /* Begin PBXBuildFile section */
 		2AF2F9081B61920A00966368 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2F9071B61920A00966368 /* main.m */; };
 		2AF2F90B1B61920A00966368 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2F90A1B61920A00966368 /* AppDelegate.m */; };
-		2AF2F90E1B61920A00966368 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2F90D1B61920A00966368 /* ViewController.m */; };
+		2AF2F90E1B61920A00966368 /* KKMTracingLetterTraceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2F90D1B61920A00966368 /* KKMTracingLetterTraceViewController.m */; };
 		2AF2F9111B61920A00966368 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF2F90F1B61920A00966368 /* Main.storyboard */; };
 		2AF2F9131B61920A00966368 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AF2F9121B61920A00966368 /* Images.xcassets */; };
 		2AF2F9161B61920A00966368 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AF2F9141B61920A00966368 /* LaunchScreen.xib */; };
 		2AF2F9221B61920A00966368 /* TracingLetterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2F9211B61920A00966368 /* TracingLetterTests.m */; };
-		2AF2F92D1B61923700966368 /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2F92C1B61923700966368 /* DrawView.m */; };
+		2AF2F92D1B61923700966368 /* KKMTracingLetterDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2F92C1B61923700966368 /* KKMTracingLetterDrawView.m */; };
+		2AFABB7D1B62AA19009E3DDF /* NSString+Glyphs.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFABB7C1B62AA19009E3DDF /* NSString+Glyphs.m */; };
+		2AFABB7F1B62AA68009E3DDF /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AFABB7E1B62AA68009E3DDF /* CoreText.framework */; };
+		2AFABB831B62E3EF009E3DDF /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2AFABB821B62E3EF009E3DDF /* data.plist */; };
+		2AFABB861B62E836009E3DDF /* KKMTracingLetterWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFABB851B62E836009E3DDF /* KKMTracingLetterWelcomeViewController.m */; };
+		2AFABB8C1B6311AA009E3DDF /* CustomRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFABB8B1B6311AA009E3DDF /* CustomRoundedButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,16 +38,24 @@
 		2AF2F9071B61920A00966368 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2AF2F9091B61920A00966368 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2AF2F90A1B61920A00966368 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2AF2F90C1B61920A00966368 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		2AF2F90D1B61920A00966368 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2AF2F90C1B61920A00966368 /* KKMTracingLetterTraceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KKMTracingLetterTraceViewController.h; sourceTree = "<group>"; };
+		2AF2F90D1B61920A00966368 /* KKMTracingLetterTraceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KKMTracingLetterTraceViewController.m; sourceTree = "<group>"; };
 		2AF2F9101B61920A00966368 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2AF2F9121B61920A00966368 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2AF2F9151B61920A00966368 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		2AF2F91B1B61920A00966368 /* TracingLetterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TracingLetterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF2F9201B61920A00966368 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AF2F9211B61920A00966368 /* TracingLetterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TracingLetterTests.m; sourceTree = "<group>"; };
-		2AF2F92B1B61923700966368 /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
-		2AF2F92C1B61923700966368 /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
+		2AF2F92B1B61923700966368 /* KKMTracingLetterDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKMTracingLetterDrawView.h; sourceTree = "<group>"; };
+		2AF2F92C1B61923700966368 /* KKMTracingLetterDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKMTracingLetterDrawView.m; sourceTree = "<group>"; };
+		2AFABB7B1B62AA19009E3DDF /* NSString+Glyphs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Glyphs.h"; sourceTree = "<group>"; };
+		2AFABB7C1B62AA19009E3DDF /* NSString+Glyphs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Glyphs.m"; sourceTree = "<group>"; };
+		2AFABB7E1B62AA68009E3DDF /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		2AFABB821B62E3EF009E3DDF /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
+		2AFABB841B62E836009E3DDF /* KKMTracingLetterWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKMTracingLetterWelcomeViewController.h; sourceTree = "<group>"; };
+		2AFABB851B62E836009E3DDF /* KKMTracingLetterWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKMTracingLetterWelcomeViewController.m; sourceTree = "<group>"; };
+		2AFABB8A1B6311AA009E3DDF /* CustomRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomRoundedButton.h; sourceTree = "<group>"; };
+		2AFABB8B1B6311AA009E3DDF /* CustomRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomRoundedButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AFABB7F1B62AA68009E3DDF /* CoreText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +80,7 @@
 		2AF2F8F91B61920A00966368 = {
 			isa = PBXGroup;
 			children = (
+				2AFABB7E1B62AA68009E3DDF /* CoreText.framework */,
 				2AF2F9041B61920A00966368 /* TracingLetter */,
 				2AF2F91E1B61920A00966368 /* TracingLetterTests */,
 				2AF2F9031B61920A00966368 /* Products */,
@@ -86,14 +101,20 @@
 			children = (
 				2AF2F9091B61920A00966368 /* AppDelegate.h */,
 				2AF2F90A1B61920A00966368 /* AppDelegate.m */,
-				2AF2F90C1B61920A00966368 /* ViewController.h */,
-				2AF2F90D1B61920A00966368 /* ViewController.m */,
-				2AF2F92B1B61923700966368 /* DrawView.h */,
-				2AF2F92C1B61923700966368 /* DrawView.m */,
+				2AFABB841B62E836009E3DDF /* KKMTracingLetterWelcomeViewController.h */,
+				2AFABB851B62E836009E3DDF /* KKMTracingLetterWelcomeViewController.m */,
+				2AF2F90C1B61920A00966368 /* KKMTracingLetterTraceViewController.h */,
+				2AF2F90D1B61920A00966368 /* KKMTracingLetterTraceViewController.m */,
+				2AF2F92B1B61923700966368 /* KKMTracingLetterDrawView.h */,
+				2AF2F92C1B61923700966368 /* KKMTracingLetterDrawView.m */,
+				2AFABB7B1B62AA19009E3DDF /* NSString+Glyphs.h */,
+				2AFABB7C1B62AA19009E3DDF /* NSString+Glyphs.m */,
 				2AF2F90F1B61920A00966368 /* Main.storyboard */,
 				2AF2F9121B61920A00966368 /* Images.xcassets */,
 				2AF2F9141B61920A00966368 /* LaunchScreen.xib */,
 				2AF2F9051B61920A00966368 /* Supporting Files */,
+				2AFABB8A1B6311AA009E3DDF /* CustomRoundedButton.h */,
+				2AFABB8B1B6311AA009E3DDF /* CustomRoundedButton.m */,
 			);
 			path = TracingLetter;
 			sourceTree = "<group>";
@@ -101,6 +122,7 @@
 		2AF2F9051B61920A00966368 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2AFABB821B62E3EF009E3DDF /* data.plist */,
 				2AF2F9061B61920A00966368 /* Info.plist */,
 				2AF2F9071B61920A00966368 /* main.m */,
 			);
@@ -206,6 +228,7 @@
 			files = (
 				2AF2F9111B61920A00966368 /* Main.storyboard in Resources */,
 				2AF2F9161B61920A00966368 /* LaunchScreen.xib in Resources */,
+				2AFABB831B62E3EF009E3DDF /* data.plist in Resources */,
 				2AF2F9131B61920A00966368 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,10 +247,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AF2F90E1B61920A00966368 /* ViewController.m in Sources */,
+				2AFABB861B62E836009E3DDF /* KKMTracingLetterWelcomeViewController.m in Sources */,
+				2AF2F90E1B61920A00966368 /* KKMTracingLetterTraceViewController.m in Sources */,
 				2AF2F90B1B61920A00966368 /* AppDelegate.m in Sources */,
-				2AF2F92D1B61923700966368 /* DrawView.m in Sources */,
+				2AFABB7D1B62AA19009E3DDF /* NSString+Glyphs.m in Sources */,
+				2AF2F92D1B61923700966368 /* KKMTracingLetterDrawView.m in Sources */,
 				2AF2F9081B61920A00966368 /* main.m in Sources */,
+				2AFABB8C1B6311AA009E3DDF /* CustomRoundedButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +382,7 @@
 				INFOPLIST_FILE = TracingLetter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -366,6 +393,7 @@
 				INFOPLIST_FILE = TracingLetter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -422,6 +450,7 @@
 				2AF2F9271B61920A00966368 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2AF2F9281B61920A00966368 /* Build configuration list for PBXNativeTarget "TracingLetterTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +459,7 @@
 				2AF2F92A1B61920A00966368 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
