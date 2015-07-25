@@ -27,17 +27,14 @@ NSString* const KKMDataPListFileName = @"data";
     
     [self setupPropertyList];
     [self setupDrawView];
-    //[self setupSwipeGesture];
 }
 
 - (void)setupPropertyList
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:KKMDataPListFileName ofType:@"plist"];
-    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:path];
-    if (self.plistKey == nil)
-        self.plistKey = KKMEnglishUpperCaseAlphabets;
-    
-    self.dataArray = [dictionary objectForKey:self.plistKey];
+    NSDictionary *pListDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
+    NSDictionary *langDict = pListDictionary[self.languageKey];
+    self.dataArray = langDict[self.plistKey];
 }
 
 - (void)setupDrawView
@@ -81,54 +78,6 @@ NSString* const KKMDataPListFileName = @"data";
     
     [drawView cleanUp];    
     [drawView setNeedsDisplay];
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
--(void)setupSwipeGesture
-{
-    UISwipeGestureRecognizer *swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRecognizer:)];
-    UISwipeGestureRecognizer *swipeRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRecognizer:)];
-
-    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
-    swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
-
-    [self.view addGestureRecognizer:swipeLeftGesture];
-    [self.view addGestureRecognizer:swipeRightGesture];
-}
-
-- (void) swipeRecognizer:(UISwipeGestureRecognizer *)sender
-{
-    KKMTracingLetterDrawView *drawView = (KKMTracingLetterDrawView *)self.view;
-    if (sender.direction == UISwipeGestureRecognizerDirectionLeft)
-    {
-        if((self.dataArray.count - 1) > self.arrayIndex)
-        {
-            self.arrayIndex++;
-            drawView.letterString = self.dataArray[self.arrayIndex];
-        }
-    }
-    
-    if (sender.direction == UISwipeGestureRecognizerDirectionRight)
-    {
-        if(self.arrayIndex > 0)
-        {
-            self.arrayIndex--;
-            drawView.letterString = self.dataArray[self.arrayIndex];
-        }
-    }
-    
-    [self.view setNeedsDisplay];
 }
 
 

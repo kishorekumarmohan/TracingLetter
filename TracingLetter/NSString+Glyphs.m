@@ -11,42 +11,47 @@
 
 @implementation NSString (Glyphs)
 
-- (UIBezierPath *)bezierPathWithFont:(UIFont *)font bounds:(CGRect)bounds
+- (UIBezierPath *)bezierPathWithFont:(UIFont*)font bounds:(CGRect)bounds
 {
-    CTFontRef fontRef = CTFontCreateWithName((CFStringRef)font.familyName, font.pointSize, NULL);
-    NSString *string = self;
-    NSUInteger count = string.length;
-    unichar characters[count];
-    [string getCharacters:characters range:NSMakeRange(0, count)];
+    CTFontRef ctFont = CTFontCreateWithName((__bridge CFStringRef)font.familyName, font.pointSize, NULL);
+    NSAttributedString *attributed = [[NSAttributedString alloc] initWithString:self attributes:[NSDictionary dictionaryWithObject:(__bridge id)ctFont forKey:(__bridge NSString*)kCTFontAttributeName]];
+    CFRelease(ctFont);
     
-    CGGlyph glyphs[count];
-    BOOL gotGlyphs = CTFontGetGlyphsForCharacters(fontRef, characters, glyphs, count);
-    
-    UIBezierPath *bpath;
-    if (gotGlyphs)
+    CGMutablePathRef letters = CGPathCreateMutable();
+    CTLineRef line = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)attributed);
+    CFArrayRef runArray = CTLineGetGlyphRuns(line);
+    for (CFIndex runIndex = 0; runIndex < CFArrayGetCount(runArray); runIndex++)
     {
-        CGAffineTransform transform = CGAffineTransformIdentity; //CGAffineTransformMakeRotation(2.0f);
-        CGPathRef pathRef = CTFontCreatePathForGlyph(fontRef, glyphs[0], &transform);
-        bpath = [UIBezierPath bezierPath];
-        [bpath appendPath:[UIBezierPath bezierPathWithCGPath:pathRef]];
-        [bpath closePath];
-        [bpath applyTransform:CGAffineTransformMakeScale(1.0, -1.0)];
-        CGRect boundingBox = CGPathGetBoundingBox(pathRef);
-        CGFloat x = (bounds.size.width / 2) - (boundingBox.size.width / 2);
-        CGFloat y = (bounds.size.height / 2) + (boundingBox.size.height / 2);
+        CTRunRef run = (CTRunRef)CFArrayGetValueAtIndex(runArray, runIndex);
+        CTFontRef runFont = CFDictionaryGetValue(CTRunGetAttributes(run), kCTFontAttributeName);
         
-        [bpath applyTransform:CGAffineTransformMakeTranslation(x, y)];
+        for (CFIndex runGlyphIndex = 0; runGlyphIndex < CTRunGetGlyphCount(run); runGlyphIndex++)
+        {
+            CFRange thisGlyphRange = CFRangeMake(runGlyphIndex, 1);
+            CGGlyph glyph;
+            CGPoint position;
+            CTRunGetGlyphs(run, thisGlyphRange, &glyph);
+            CTRunGetPositions(run, thisGlyphRange, &position);
+            
+            CGPathRef letter = CTFontCreatePathForGlyph(runFont, glyph, NULL);
+            CGAffineTransform t = CGAffineTransformMakeTranslation(position.x, position.y);
+            CGPathAddPath(letters, &t, letter);
+            CGPathRelease(letter);
+        }
     }
-    return bpath;
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithCGPath:letters];
+    CGRect boundingBox = CGPathGetBoundingBox(letters);
+    CGPathRelease(letters);
+    CFRelease(line);
+    
+    // The path is upside down (CG coordinate system)
+    [path applyTransform:CGAffineTransformMakeScale(1.0, -1.0)];
+    CGFloat x = (bounds.size.width / 2) - (boundingBox.size.width / 2);
+    CGFloat y = (bounds.size.height / 2) + (boundingBox.size.height / 2);
+    [path applyTransform:CGAffineTransformMakeTranslation(x, y)];
+    
+    return path;
 }
 
-- (BOOL)isCharacter:(unichar)character supportedByFont:(UIFont *)aFont
-{
-    UniChar characters[] = { character };
-    CGGlyph glyphs[1] = { };
-    CTFontRef ctFont = CTFontCreateWithName((CFStringRef)aFont.fontName, aFont.pointSize, NULL);
-    BOOL ret = CTFontGetGlyphsForCharacters(ctFont, characters, glyphs, 1);
-    CFRelease(ctFont);
-    return ret;
-}
 @end

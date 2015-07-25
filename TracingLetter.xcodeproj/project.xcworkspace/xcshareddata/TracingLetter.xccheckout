@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>47003970-459F-46E6-928C-50279DCDAA3C</string>
+	<string>B5947A50-8DF3-40B2-8D99-604E829D04C9</string>
 	<key>IDESourceControlProjectName</key>
-	<string>TracingLetter</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>B1635A191BD4EE09F461C7FC25EA14282A69A292</key>
 		<string>https://github.com/kishorekumarmohan/TracingLetter.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>TracingLetter.xcodeproj</string>
+	<string>TracingLetter.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>B1635A191BD4EE09F461C7FC25EA14282A69A292</key>

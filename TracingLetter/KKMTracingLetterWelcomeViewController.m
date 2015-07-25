@@ -9,9 +9,9 @@
 #import "KKMTracingLetterWelcomeViewController.h"
 #import "KKMTracingLetterTraceViewController.h"
 
-NSString* const KKMEnglishUpperCaseAlphabets    = @"en_upper_case_alphabets";
-NSString* const KKMEnglishLowerCaseAlphabets    = @"en_lower_case_alphabets";
-NSString* const KKMNumbers                      = @"numbers";
+NSString* const KKMKey1 = @"key1";
+NSString* const KKMKey2 = @"key2";
+NSString* const KKMKey3 = @"key3";
 
 @interface KKMTracingLetterWelcomeViewController ()
 
@@ -22,6 +22,15 @@ NSString* const KKMNumbers                      = @"numbers";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    for (NSString* family in [UIFont familyNames])
+    {
+        NSLog(@"%@", family);
+        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+        {
+            NSLog(@"  %@", name);
+        }
+    }
 }
 
 
@@ -30,15 +39,16 @@ NSString* const KKMNumbers                      = @"numbers";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     KKMTracingLetterTraceViewController *controller = [segue destinationViewController];
+    controller.languageKey = @"tamil";
     
-    if ([segue.identifier isEqualToString:KKMEnglishLowerCaseAlphabets])
-        controller.plistKey = KKMEnglishLowerCaseAlphabets;
+    if ([segue.identifier isEqualToString:KKMKey1])
+        controller.plistKey = KKMKey1;
     
-    else if ([segue.identifier isEqualToString:KKMEnglishLowerCaseAlphabets])
-        controller.plistKey = KKMEnglishLowerCaseAlphabets;
+    else if ([segue.identifier isEqualToString:KKMKey2])
+        controller.plistKey = KKMKey2;
     
-    else if ([segue.identifier isEqualToString:KKMNumbers])
-        controller.plistKey = KKMNumbers;
+    else if ([segue.identifier isEqualToString:KKMKey3])
+        controller.plistKey = KKMKey3;
 }
 
 

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString* const KKMEnglishUpperCaseAlphabets;
-extern NSString* const KKMEnglishLowerCaseAlphabets;
-extern NSString* const KKMNumbers;
+extern NSString* const KKMKey1;
+extern NSString* const KKMKey2;
+extern NSString* const KKMKey3;
 
 @interface KKMTracingLetterWelcomeViewController : UIViewController
 
