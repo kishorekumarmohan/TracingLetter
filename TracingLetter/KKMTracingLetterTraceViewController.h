@@ -10,8 +10,7 @@
 
 @interface KKMTracingLetterTraceViewController : UIViewController
 
-@property (nonatomic, strong) NSString *languageKey;
-@property (nonatomic, strong) NSString *plistKey;
+@property (nonatomic, strong) NSDictionary *dataDict;
 
 @end
 

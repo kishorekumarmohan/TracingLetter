@@ -4,73 +4,51 @@
 <dict>
 	<key>tamil</key>
 	<dict>
+		<key>title</key>
+		<string>தமிழ்</string>
 		<key>button1</key>
 		<dict>
 			<key>name</key>
 			<string>உயிரெழுத்துக்கள்</string>
-			<key>0</key>
-			<dict>
-				<key>letter</key>
-				<string>அ</string>
-				<key>word</key>
-				<string>அம்மா</string>
-				<key>image</key>
-				<string>1</string>
-			</dict>
-			<key>1</key>
-			<dict>
-				<key>letter</key>
-				<string>ஆ</string>
-				<key>word</key>
-				<string>ஆடு</string>
-				<key>image</key>
-				<string>1</string>
-			</dict>
+			<key>values</key>
+			<array>
+				<array>
+					<string>அ</string>
+					<string>ஆ</string>
+				</array>
+				<array>
+					<string>அம்மா</string>
+					<string>ஆடு</string>
+				</array>
+			</array>
 		</dict>
 		<key>button2</key>
 		<dict>
 			<key>name</key>
 			<string>மெய்யெழுத்துக்கள்</string>
-			<key>key0</key>
-			<dict>
-				<key>letter</key>
-				<string>அ</string>
-				<key>word</key>
-				<string>அம்மா</string>
-				<key>image</key>
-				<string>1</string>
-			</dict>
+			<key>values</key>
+			<array>
+				<array>
+					<string>க்</string>
+					<string>அம்மா</string>
+				</array>
+			</array>
 		</dict>
 		<key>button3</key>
 		<dict>
-			<key>name</key>
-			<string>உயிரெழுத்துக்கள்</string>
 			<key>key0</key>
 			<dict>
 				<key>letter</key>
-				<string>அ</string>
+				<string>க</string>
 				<key>word</key>
 				<string>அம்மா</string>
-				<key>image</key>
-				<string>1</string>
 			</dict>
+			<key>name</key>
+			<string>உயிர்மெய்ழுத்துக்கள்</string>
 		</dict>
-		<key>key1</key>
-		<array>
-			<string>அ</string>
-			<string>ஆ</string>
-			<string>இ</string>
-			<string>ஈ</string>
-			<string>உ</string>
-			<string>ஊ</string>
-			<string>எ</string>
-			<string>ஏ</string>
-			<string>ஐ</string>
-			<string>ஒ</string>
-			<string>ஓ</string>
-			<string>ஔ</string>
-			<string>ஃ</string>
-		</array>
+	</dict>
+	<key>telugu</key>
+	<dict>
 		<key>key2</key>
 		<array>
 			<string>க்</string>
@@ -107,9 +85,23 @@
 			<string>கோ</string>
 			<string>கௌ</string>
 		</array>
+		<key>key1</key>
+		<array>
+			<string>அ</string>
+			<string>ஆ</string>
+			<string>இ</string>
+			<string>ஈ</string>
+			<string>உ</string>
+			<string>ஊ</string>
+			<string>எ</string>
+			<string>ஏ</string>
+			<string>ஐ</string>
+			<string>ஒ</string>
+			<string>ஓ</string>
+			<string>ஔ</string>
+			<string>ஃ</string>
+		</array>
 	</dict>
-	<key>telugu</key>
-	<dict/>
 	<key>malayalam</key>
 	<dict/>
 </dict>

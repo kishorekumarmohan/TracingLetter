@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString* const KKMKey1;
-extern NSString* const KKMKey2;
-extern NSString* const KKMKey3;
-
 @interface KKMTracingLetterWelcomeViewController : UIViewController
 
 @end

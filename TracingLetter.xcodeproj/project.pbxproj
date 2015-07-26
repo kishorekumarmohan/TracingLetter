@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AD5AD791B64AF4E00E5C7F0 /* KKMTracingLetterConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5AD781B64AF4E00E5C7F0 /* KKMTracingLetterConstants.m */; };
 		2AF2F9081B61920A00966368 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2F9071B61920A00966368 /* main.m */; };
 		2AF2F90B1B61920A00966368 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2F90A1B61920A00966368 /* AppDelegate.m */; };
 		2AF2F90E1B61920A00966368 /* KKMTracingLetterTraceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2F90D1B61920A00966368 /* KKMTracingLetterTraceViewController.m */; };
@@ -33,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2AD5AD771B64AF4E00E5C7F0 /* KKMTracingLetterConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKMTracingLetterConstants.h; sourceTree = "<group>"; };
+		2AD5AD781B64AF4E00E5C7F0 /* KKMTracingLetterConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKMTracingLetterConstants.m; sourceTree = "<group>"; };
 		2AF2F9021B61920A00966368 /* TracingLetter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TracingLetter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF2F9061B61920A00966368 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AF2F9071B61920A00966368 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 				2AF2F90D1B61920A00966368 /* KKMTracingLetterTraceViewController.m */,
 				2AF2F92B1B61923700966368 /* KKMTracingLetterDrawView.h */,
 				2AF2F92C1B61923700966368 /* KKMTracingLetterDrawView.m */,
+				2AD5AD771B64AF4E00E5C7F0 /* KKMTracingLetterConstants.h */,
+				2AD5AD781B64AF4E00E5C7F0 /* KKMTracingLetterConstants.m */,
 				2AFABB7B1B62AA19009E3DDF /* NSString+Glyphs.h */,
 				2AFABB7C1B62AA19009E3DDF /* NSString+Glyphs.m */,
 				2AF2F90F1B61920A00966368 /* Main.storyboard */,
@@ -254,6 +259,7 @@
 				2AFABB7D1B62AA19009E3DDF /* NSString+Glyphs.m in Sources */,
 				2AF2F92D1B61923700966368 /* KKMTracingLetterDrawView.m in Sources */,
 				2AF2F9081B61920A00966368 /* main.m in Sources */,
+				2AD5AD791B64AF4E00E5C7F0 /* KKMTracingLetterConstants.m in Sources */,
 				2AFABB8C1B6311AA009E3DDF /* CustomRoundedButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

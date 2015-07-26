@@ -24,6 +24,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="336" y="344" width="48" height="48"/>
+                                </variation>
                                 <connections>
                                     <action selector="forwardButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="z4V-01-36U"/>
                                 </connections>
@@ -35,6 +38,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="16" y="344" width="48" height="48"/>
+                                </variation>
                                 <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
                                     <rect key="frame" x="16" y="342" width="50" height="50"/>
                                 </variation>
@@ -42,14 +48,11 @@
                                     <action selector="backButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="dnZ-kg-yBE"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="அம்மா" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVt-Fw-gZ2">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kO-dI-9L7">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="138" y="626" width="125" height="21"/>
-                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.26274511220000002" green="0.44313728810000003" blue="0.11372549830000001" alpha="1" colorSpace="deviceRGB"/>
@@ -57,22 +60,37 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="8oH-5P-xjg" secondAttribute="bottom" constant="8" id="9wa-KE-tTN"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="8oH-5P-xjg" secondAttribute="bottom" constant="8" id="Eg7-ze-EOx"/>
                             <constraint firstItem="8oH-5P-xjg" firstAttribute="height" secondItem="6I7-1E-Fbe" secondAttribute="height" id="FOp-tq-Sdj"/>
+                            <constraint firstAttribute="centerX" secondItem="5kO-dI-9L7" secondAttribute="centerX" id="GQ1-Mq-Xfd"/>
                             <constraint firstItem="8oH-5P-xjg" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="YYo-6h-Mtn"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="5kO-dI-9L7" secondAttribute="bottom" id="sCQ-3H-0HF"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="6I7-1E-Fbe" secondAttribute="bottom" constant="8" id="wev-Zd-R20"/>
                             <constraint firstItem="8oH-5P-xjg" firstAttribute="width" secondItem="6I7-1E-Fbe" secondAttribute="width" id="yGB-0K-beb"/>
                             <constraint firstItem="6I7-1E-Fbe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="ybH-J7-JGO"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="vVt-Fw-gZ2"/>
+                                <exclude reference="5kO-dI-9L7"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="sCQ-3H-0HF"/>
+                                <exclude reference="GQ1-Mq-Xfd"/>
                             </mask>
                         </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
+                        <variation key="heightClass=compact-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="vVt-Fw-gZ2"/>
+                                <include reference="5kO-dI-9L7"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="sCQ-3H-0HF"/>
+                                <include reference="GQ1-Mq-Xfd"/>
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="word" destination="5kO-dI-9L7" id="m82-Ph-fKb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -90,11 +108,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7b-jX-nLo" customClass="CustomRoundedButton">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7b-jX-nLo" customClass="CustomRoundedButton">
                                 <rect key="frame" x="16" y="72" width="200" height="200"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <state key="normal" title="உயிரெழுத்துக்கள்">
+                                <state key="normal" title="உ">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -107,14 +125,14 @@
                                     <rect key="frame" x="16" y="72" width="368" height="72"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="key1" id="LQX-oL-u21"/>
+                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="button1" id="LQX-oL-u21"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66v-Mu-aTd" customClass="CustomRoundedButton">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66v-Mu-aTd" customClass="CustomRoundedButton">
                                 <rect key="frame" x="224" y="72" width="254" height="200"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <state key="normal" title="மெய்யெழுத்துக்கள்">
+                                <state key="normal" title="யி">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -127,14 +145,14 @@
                                     <rect key="frame" x="16" y="152" width="368" height="72"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="key2" id="bg6-tF-WGE"/>
+                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="button2" id="bg6-tF-WGE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FZ-Hg-5Jq" customClass="CustomRoundedButton">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FZ-Hg-5Jq" customClass="CustomRoundedButton">
                                 <rect key="frame" x="16" y="336" width="250" height="110"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <state key="normal" title="உயிர்மெய்யெழுத்துக்கள்">
+                                <state key="normal" title="ள்">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -147,7 +165,7 @@
                                     <rect key="frame" x="16" y="232" width="368" height="72"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="key3" id="7Le-nV-N4f"/>
+                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="button3" id="7Le-nV-N4f"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -191,6 +209,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Trace Letters &amp; Numbers" id="3LS-ua-L92"/>
+                    <connections>
+                        <outlet property="button1" destination="i7b-jX-nLo" id="mHg-yO-zAs"/>
+                        <outlet property="button2" destination="66v-Mu-aTd" id="Q6D-RH-iUR"/>
+                        <outlet property="button3" destination="7FZ-Hg-5Jq" id="0He-Vz-chq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ArU-4Q-bka" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

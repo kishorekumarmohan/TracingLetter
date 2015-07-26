@@ -8,15 +8,13 @@
 
 #import "KKMTracingLetterTraceViewController.h"
 #import "KKMTracingLetterDrawView.h"
-#import "KKMTracingLetterWelcomeViewController.h"
+#import "KKMTracingLetterConstants.h"
 
-NSString* const KKMDataPListFileName = @"data";
 
 @interface KKMTracingLetterTraceViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *word;
 
-@property (nonatomic, strong) NSArray *dataArray;
-@property (nonatomic, assign) NSInteger arrayIndex;
-
+@property (nonatomic, assign) NSInteger index;
 @end
 
 @implementation KKMTracingLetterTraceViewController
@@ -25,26 +23,18 @@ NSString* const KKMDataPListFileName = @"data";
 {
     [super viewDidLoad];
     
-    [self setupPropertyList];
     [self setupDrawView];
-}
-
-- (void)setupPropertyList
-{
-    NSString *path = [[NSBundle mainBundle] pathForResource:KKMDataPListFileName ofType:@"plist"];
-    NSDictionary *pListDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
-    NSDictionary *langDict = pListDictionary[self.languageKey];
-    self.dataArray = langDict[self.plistKey];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(cleanUp)];
 }
 
 - (void)setupDrawView
 {
     KKMTracingLetterDrawView *drawView = (KKMTracingLetterDrawView *)self.view;
-    drawView.letterString = [self.dataArray firstObject];
+    drawView.letterString = self.dataDict[KKMValues][0][0];
+    self.word.text = self.dataDict[KKMValues][1][0];
 }
 
-
-
+#pragma mark - Button actions
 - (IBAction)backButtonTapped:(id)sender
 {
     [self refreshView:@"back"];
@@ -58,21 +48,25 @@ NSString* const KKMDataPListFileName = @"data";
 
 - (void)refreshView:(NSString *)key
 {
+    NSArray *letterArray = self.dataDict[KKMValues][0];
+    NSArray *wordArray = self.dataDict[KKMValues][1];
     KKMTracingLetterDrawView *drawView = (KKMTracingLetterDrawView *)self.view;
     if ([key isEqualToString:@"forward"])
     {
-        if((self.dataArray.count - 1) > self.arrayIndex)
+        if((letterArray.count - 1) > self.index)
         {
-            self.arrayIndex++;
-            drawView.letterString = self.dataArray[self.arrayIndex];
+            self.index++;
+            drawView.letterString = letterArray[self.index];
+            self.word.text = wordArray[self.index];
         }
     }
     else if ([key isEqualToString:@"back"])
     {
-        if(self.arrayIndex > 0)
+        if(self.index > 0)
         {
-            self.arrayIndex--;
-            drawView.letterString = self.dataArray[self.arrayIndex];
+            self.index--;
+            drawView.letterString = letterArray[self.index];
+            self.word.text = wordArray[self.index];
         }
     }
     
@@ -80,5 +74,10 @@ NSString* const KKMDataPListFileName = @"data";
     [drawView setNeedsDisplay];
 }
 
+- (void)cleanUp
+{
+    KKMTracingLetterDrawView *drawView = (KKMTracingLetterDrawView *)self.view;
+    [drawView cleanUp];
+}
 
 @end

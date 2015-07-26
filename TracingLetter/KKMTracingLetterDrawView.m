@@ -33,6 +33,7 @@
 - (void)cleanUp
 {
     self.handWritingBezierPath = [UIBezierPath bezierPath];
+    [self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)rect
@@ -46,10 +47,10 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     NSString *string = self.letterString;
 
-    CGFloat fontSize = 500.0f;
+    CGFloat fontSize = 400.0f;
 
     if (string.length > 1)
-        fontSize = 400.0f;
+        fontSize = 300.0f;
 
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         fontSize = 500.f;
@@ -66,11 +67,12 @@
 - (void)drawHandWritingLetter
 {
     [[UIColor whiteColor] setStroke];
-    CGFloat lineWidth = 30.0f;
+    CGFloat lineWidth = 20.0f;
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        lineWidth = 40.0f;
+        lineWidth = 30.0f;
     
+    self.handWritingBezierPath.lineJoinStyle = kCGLineJoinRound;
     [self.handWritingBezierPath setLineWidth:lineWidth];
     [self.handWritingBezierPath stroke];
 }
