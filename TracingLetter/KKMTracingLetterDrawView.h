@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol KKMTracingLetterDrawViewDelegate <NSObject>
+
+- (void)drawViewTapped;
+
+@end
+
 @interface KKMTracingLetterDrawView : UIView
+
+@property (nonatomic, weak) id<KKMTracingLetterDrawViewDelegate> delegate;
 
 @property (nonatomic, strong) NSString *letterString;
 @property (nonatomic, strong) UIColor *handWritingStrokeColor;

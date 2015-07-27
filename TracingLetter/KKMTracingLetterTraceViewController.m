@@ -12,7 +12,8 @@
 #import "CustomRoundedButton.h"
 
 
-@interface KKMTracingLetterTraceViewController ()
+@interface KKMTracingLetterTraceViewController ()<KKMTracingLetterDrawViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *word;
 @property (weak, nonatomic) IBOutlet UIView *colorPickerView;
 
@@ -33,6 +34,7 @@
 - (void)setupDrawView
 {
     KKMTracingLetterDrawView *drawView = [self drawView];
+    drawView.delegate = self;
     drawView.letterString = self.dataDict[KKMValues][0][0];
     self.word.text = self.dataDict[KKMValues][1][0];
 }
@@ -100,6 +102,13 @@
 - (void)cleanUp
 {
     [[self drawView] cleanUp];
+}
+
+
+#pragma mark - KKMTracingLetterDrawViewDelegate
+-(void)drawViewTapped
+{
+    self.colorPickerView.hidden = YES;
 }
 
 @end

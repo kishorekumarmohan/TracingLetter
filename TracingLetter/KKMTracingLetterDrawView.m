@@ -22,6 +22,7 @@
 
 @implementation KKMTracingLetterDrawView
 
+#pragma mark - init
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
@@ -33,14 +34,17 @@
     return self;
 }
 
-- (void)cleanUp
+#pragma mark - drawing
+
+-(void)layoutSubviews
 {
-    self.handWritingBezierPath = [UIBezierPath bezierPath];
-    [self setNeedsDisplay];
+    [super layoutSubviews];
 }
 
 - (void)drawRect:(CGRect)rect
 {
+    [super drawRect:rect];
+    
     [self fontSizeAndLineWidth];
     [self drawTracingLetter];
     [self drawHandWritingLetter];
@@ -94,6 +98,8 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    [self.delegate drawViewTapped];
+    
     UITouch *touch = [touches anyObject];
     CGPoint p = [touch locationInView:self];
     
@@ -129,6 +135,12 @@
 }
 
 
+#pragma mark - cleanup
+- (void)cleanUp
+{
+    self.handWritingBezierPath = [UIBezierPath bezierPath];
+    [self setNeedsDisplay];
+}
 
 
 
