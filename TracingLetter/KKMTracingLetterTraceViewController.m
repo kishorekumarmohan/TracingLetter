@@ -9,10 +9,12 @@
 #import "KKMTracingLetterTraceViewController.h"
 #import "KKMTracingLetterDrawView.h"
 #import "KKMTracingLetterConstants.h"
+#import "CustomRoundedButton.h"
 
 
 @interface KKMTracingLetterTraceViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *word;
+@property (weak, nonatomic) IBOutlet UIView *colorPickerView;
 
 @property (nonatomic, assign) NSInteger index;
 @end
@@ -25,11 +27,12 @@
     
     [self setupDrawView];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(cleanUp)];
+    self.colorPickerView.hidden = YES;
 }
 
 - (void)setupDrawView
 {
-    KKMTracingLetterDrawView *drawView = (KKMTracingLetterDrawView *)self.view;
+    KKMTracingLetterDrawView *drawView = [self drawView];
     drawView.letterString = self.dataDict[KKMValues][0][0];
     self.word.text = self.dataDict[KKMValues][1][0];
 }
@@ -50,7 +53,7 @@
 {
     NSArray *letterArray = self.dataDict[KKMValues][0];
     NSArray *wordArray = self.dataDict[KKMValues][1];
-    KKMTracingLetterDrawView *drawView = (KKMTracingLetterDrawView *)self.view;
+    KKMTracingLetterDrawView *drawView = [self drawView];
     if ([key isEqualToString:@"forward"])
     {
         if((letterArray.count - 1) > self.index)
@@ -73,11 +76,30 @@
     [drawView cleanUp];    
     [drawView setNeedsDisplay];
 }
+- (IBAction)colorLensButtonTapped:(id)sender
+{
+    self.colorPickerView.hidden = NO;
+}
+- (IBAction)colorButtonTapped:(id)sender
+{
+    CustomRoundedButton *button = (CustomRoundedButton *)sender;
+    UIColor *color = button.backgroundColor;
+    [self drawView].handWritingStrokeColor = color;
+    self.colorPickerView.hidden = YES;
+}
+
+
+#pragma mark - helper
+
+- (KKMTracingLetterDrawView *)drawView
+{
+    KKMTracingLetterDrawView *drawView = (KKMTracingLetterDrawView *)self.view;
+    return drawView;
+}
 
 - (void)cleanUp
 {
-    KKMTracingLetterDrawView *drawView = (KKMTracingLetterDrawView *)self.view;
-    [drawView cleanUp];
+    [[self drawView] cleanUp];
 }
 
 @end

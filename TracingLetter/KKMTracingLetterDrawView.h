@@ -10,7 +10,8 @@
 
 @interface KKMTracingLetterDrawView : UIView
 
-@property (nonatomic, copy) NSString *letterString;
+@property (nonatomic, strong) NSString *letterString;
+@property (nonatomic, strong) UIColor *handWritingStrokeColor;
 
 - (void)cleanUp;
 

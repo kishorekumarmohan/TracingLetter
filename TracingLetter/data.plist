@@ -30,21 +30,29 @@
 			<array>
 				<array>
 					<string>க்</string>
+					<string>ங்</string>
+				</array>
+				<array>
+					<string>அம்மா</string>
 					<string>அம்மா</string>
 				</array>
 			</array>
 		</dict>
 		<key>button3</key>
 		<dict>
-			<key>key0</key>
-			<dict>
-				<key>letter</key>
-				<string>க</string>
-				<key>word</key>
-				<string>அம்மா</string>
-			</dict>
 			<key>name</key>
 			<string>உயிர்மெய்ழுத்துக்கள்</string>
+			<key>values</key>
+			<array>
+				<array>
+					<string>க</string>
+					<string>கா</string>
+				</array>
+				<array>
+					<string>அம்மா</string>
+					<string>அம்மா</string>
+				</array>
+			</array>
 		</dict>
 	</dict>
 	<key>telugu</key>

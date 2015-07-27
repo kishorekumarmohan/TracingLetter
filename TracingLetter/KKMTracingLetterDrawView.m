@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) UIBezierPath  *traceLetterBezierPath;
 @property (nonatomic, strong) UIBezierPath  *handWritingBezierPath;
+@property (nonatomic, assign) NSInteger handWritingLineWidth;
+@property (nonatomic, assign) CGFloat fontSize;
 
 @end
 
@@ -26,6 +28,7 @@
     if (self)
     {
         _handWritingBezierPath = [UIBezierPath bezierPath];
+        _handWritingStrokeColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -38,6 +41,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    [self fontSizeAndLineWidth];
     [self drawTracingLetter];
     [self drawHandWritingLetter];
 }
@@ -46,16 +50,7 @@
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     NSString *string = self.letterString;
-
-    CGFloat fontSize = 400.0f;
-
-    if (string.length > 1)
-        fontSize = 300.0f;
-
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        fontSize = 500.f;
-    
-    UIFont *font = [UIFont fontWithName:@"TamilSangamMN-Bold" size:fontSize];
+    UIFont *font = [UIFont fontWithName:@"TamilSangamMN-Bold" size:self.fontSize];
     self.traceLetterBezierPath = [string bezierPathWithFont:font bounds:self.bounds];
     
     CGContextAddPath(context, self.traceLetterBezierPath.CGPath);
@@ -64,16 +59,34 @@
     CGContextStrokePath(context);
 }
 
-- (void)drawHandWritingLetter
+- (void)fontSizeAndLineWidth
 {
-    [[UIColor whiteColor] setStroke];
-    CGFloat lineWidth = 20.0f;
+    self.fontSize = 400.0f;
+    self.handWritingLineWidth = 20.0f;
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        lineWidth = 30.0f;
-    
+    {
+        self.fontSize = 500.f;
+    }
+    else
+    {
+        self.handWritingLineWidth = 15.0f;
+        self.fontSize = 300.0f;
+        
+        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+        if(UIInterfaceOrientationIsPortrait(orientation))
+        {
+            if (self.letterString.length > 1)
+                self.fontSize = 250.0f;
+        }
+    }
+}
+
+- (void)drawHandWritingLetter
+{
+    [self.handWritingStrokeColor setStroke];
     self.handWritingBezierPath.lineJoinStyle = kCGLineJoinRound;
-    [self.handWritingBezierPath setLineWidth:lineWidth];
+    [self.handWritingBezierPath setLineWidth:self.handWritingLineWidth];
     [self.handWritingBezierPath stroke];
 }
 
