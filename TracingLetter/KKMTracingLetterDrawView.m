@@ -9,6 +9,7 @@
 #import <CoreText/CoreText.h>
 #import "KKMTracingLetterDrawView.h"
 #import "NSString+Glyphs.h"
+#import "DeviceUtil.h"
 
 
 @interface KKMTracingLetterDrawView()
@@ -54,7 +55,7 @@
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     NSString *string = self.letterString;
-    UIFont *font = [UIFont fontWithName:@"TamilSangamMN-Bold" size:self.fontSize];
+    UIFont *font = [UIFont fontWithName:@"TamilSangamMN" size:self.fontSize];
     self.traceLetterBezierPath = [string bezierPathWithFont:font bounds:self.bounds];
     
     CGContextAddPath(context, self.traceLetterBezierPath.CGPath);
@@ -65,17 +66,19 @@
 
 - (void)fontSizeAndLineWidth
 {
-    self.fontSize = 400.0f;
-    self.handWritingLineWidth = 20.0f;
-    
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         self.fontSize = 500.f;
+        self.handWritingLineWidth = 20.0f;
     }
     else
     {
+        if ([DeviceUtil hardware] == IPHONE_4S)
+            self.fontSize = 200.0f;
+        else
+            self.fontSize = 300.0f;
+        
         self.handWritingLineWidth = 15.0f;
-        self.fontSize = 300.0f;
         
         UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
         if(UIInterfaceOrientationIsPortrait(orientation))

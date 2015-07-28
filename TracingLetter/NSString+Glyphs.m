@@ -47,9 +47,10 @@
     
     // The path is upside down (CG coordinate system)
     [path applyTransform:CGAffineTransformMakeScale(1.0, -1.0)];
-    CGFloat x = (bounds.size.width / 2) - (boundingBox.size.width / 2);
-    CGFloat y = (bounds.size.height / 2) + (boundingBox.size.height / 2);
-    [path applyTransform:CGAffineTransformMakeTranslation(x, y)];
+    CGFloat xPadding = (bounds.size.width - boundingBox.size.width) / 2;
+    CGFloat yPadding = (bounds.size.height + boundingBox.size.height) / 2;
+    
+    [path applyTransform:CGAffineTransformMakeTranslation(xPadding, yPadding)];
     
     return path;
 }
