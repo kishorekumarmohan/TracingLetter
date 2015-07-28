@@ -45,12 +45,12 @@
     CGPathRelease(letters);
     CFRelease(line);
     
-    // The path is upside down (CG coordinate system)
-    [path applyTransform:CGAffineTransformMakeScale(1.0, -1.0)];
-    CGFloat xPadding = (bounds.size.width - boundingBox.size.width) / 2;
-    CGFloat yPadding = (bounds.size.height + boundingBox.size.height) / 2;
-    
-    [path applyTransform:CGAffineTransformMakeTranslation(xPadding, yPadding)];
+//    // The path is upside down (CG coordinate system)
+//    [path applyTransform:CGAffineTransformMakeScale(1.0, -1.0)];
+//    CGFloat xPadding = (bounds.size.width - boundingBox.size.width) / 2;
+//    CGFloat yPadding = (bounds.size.height) / 1.5;
+//    
+//    [path applyTransform:CGAffineTransformMakeTranslation(xPadding, yPadding)];
     
     return path;
 }

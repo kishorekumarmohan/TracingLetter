@@ -56,7 +56,27 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     NSString *string = self.letterString;
     UIFont *font = [UIFont fontWithName:@"TamilSangamMN" size:self.fontSize];
+
     self.traceLetterBezierPath = [string bezierPathWithFont:font bounds:self.bounds];
+    // The path is upside down (CG coordinate system)
+    CGRect boundingBox = CGPathGetBoundingBox(self.traceLetterBezierPath.CGPath);
+    [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeScale(1.0, -1.0)];
+    
+    CGFloat x = 0;
+    CGFloat y = 0;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        x = (self.bounds.size.width - boundingBox.size.width) / 2;
+        y = self.bounds.size.height / 1.5;
+    }
+    else
+    {
+        x = (self.bounds.size.width - boundingBox.size.width) / 2;
+        y = (self.bounds.size.height) / 1.5;
+    }
+    
+    [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeTranslation(x, y)];
+
     
     CGContextAddPath(context, self.traceLetterBezierPath.CGPath);
     CGContextSetStrokeColorWithColor(context,[UIColor yellowColor].CGColor);
@@ -66,21 +86,29 @@
 
 - (void)fontSizeAndLineWidth
 {
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
-        self.fontSize = 500.f;
-        self.handWritingLineWidth = 20.0f;
+        if(UIInterfaceOrientationIsPortrait(orientation))
+        {
+            self.fontSize = 450.f;
+            self.handWritingLineWidth = 20.0f;
+        }
+        else
+        {
+            self.fontSize = 550.f;
+            self.handWritingLineWidth = 25.0f;
+        }
     }
     else
     {
-        if ([DeviceUtil hardware] == IPHONE_4S)
-            self.fontSize = 200.0f;
+        if ([DeviceUtil hardware] == IPHONE_5S)
+            self.fontSize = 300.0f;
         else
             self.fontSize = 300.0f;
         
         self.handWritingLineWidth = 15.0f;
         
-        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
         if(UIInterfaceOrientationIsPortrait(orientation))
         {
             if (self.letterString.length > 1)

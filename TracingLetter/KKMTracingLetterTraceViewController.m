@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *word;
 @property (weak, nonatomic) IBOutlet UIView *colorPickerView;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 
 @property (nonatomic, assign) NSInteger index;
 @end
@@ -29,6 +31,7 @@
     [self setupDrawView];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(cleanUp)];
     self.colorPickerView.hidden = YES;
+    self.backButton.hidden = YES;
 }
 
 - (void)setupDrawView
@@ -43,12 +46,14 @@
 - (IBAction)backButtonTapped:(id)sender
 {
     [self refreshView:@"back"];
+    self.forwardButton.hidden = NO;
 }
 
 
 - (IBAction)forwardButtonTapped:(id)sender
 {
     [self refreshView:@"forward"];
+    self.backButton.hidden = NO;
 }
 
 - (void)refreshView:(NSString *)key
@@ -64,6 +69,9 @@
             drawView.letterString = letterArray[self.index];
             self.word.text = wordArray[self.index];
         }
+
+        if ((letterArray.count -1) == self.index)
+            self.forwardButton.hidden = YES;
     }
     else if ([key isEqualToString:@"back"])
     {
@@ -73,6 +81,9 @@
             drawView.letterString = letterArray[self.index];
             self.word.text = wordArray[self.index];
         }
+        
+        if (self.index == 0)
+            self.backButton.hidden = YES;
     }
     
     [drawView cleanUp];    
