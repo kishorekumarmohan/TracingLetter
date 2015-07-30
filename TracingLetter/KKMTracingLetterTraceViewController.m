@@ -105,6 +105,7 @@
 - (IBAction)volumeButtonTapped:(id)sender
 {
     UIButton *button = (UIButton *)sender;
+    button.selected = !button.selected;
 }
 
 #pragma mark - helper

@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="top" id="aiP-MJ-umQ"/>
                         <viewControllerLayoutGuide type="bottom" id="mE0-ic-3cj"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zBv-ia-7yh" customClass="KKMTracingLetterDrawView">
+                    <view key="view" contentMode="redraw" id="zBv-ia-7yh" customClass="KKMTracingLetterDrawView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -188,11 +188,12 @@
                                     <action selector="forwardButtonTapped:" destination="QTR-L6-mWq" eventType="touchUpInside" id="UXm-Tk-sqE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56g-mb-olF">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56g-mb-olF">
                                 <rect key="frame" x="72" y="72" width="48" height="48"/>
-                                <state key="normal" backgroundImage="ic_volume_off_white_48pt">
+                                <state key="normal" image="ic_volume_off_white_48pt">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="ic_volume_up_white_48pt"/>
                                 <connections>
                                     <action selector="volumeButtonTapped:" destination="QTR-L6-mWq" eventType="touchUpInside" id="plb-pt-yed"/>
                                 </connections>
@@ -370,6 +371,7 @@
         <image name="ic_arrow_forward_white_48pt" width="48" height="48"/>
         <image name="ic_color_lens_white_48pt" width="48" height="48"/>
         <image name="ic_volume_off_white_48pt" width="48" height="48"/>
+        <image name="ic_volume_up_white_48pt" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bpY-bL-SOa"/>

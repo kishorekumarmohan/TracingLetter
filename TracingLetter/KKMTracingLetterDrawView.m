@@ -47,6 +47,7 @@ typedef enum : NSUInteger {
 -(void)layoutSubviews
 {
     [super layoutSubviews];
+    [self cleanUp];
 }
 
 - (void)drawRect:(CGRect)rect
