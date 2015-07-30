@@ -11,6 +11,12 @@
 #import "NSString+Glyphs.h"
 #import "DeviceUtil.h"
 
+typedef enum : NSUInteger {
+    TouchLifeCycleStateTypeBegin = 0,
+    TouchLifeCycleStateTypeMoved,
+    TouchLifeCycleStateTypeCancelled,
+    TouchLifeCycleStateTypeEnded
+} TouchLifeCycleStateTypeEnum;
 
 @interface KKMTracingLetterDrawView()
 
@@ -18,6 +24,7 @@
 @property (nonatomic, strong) UIBezierPath  *handWritingBezierPath;
 @property (nonatomic, assign) NSInteger handWritingLineWidth;
 @property (nonatomic, assign) CGFloat fontSize;
+@property (nonatomic, assign) NSInteger countOfInvalidTouchPoints;
 
 @end
 
@@ -127,25 +134,45 @@
 
 #pragma mark - Touch
 
+- (void)handleTouch:(NSSet *)touches withEvent:(UIEvent *)event withTouchLifeCycleStateTypeEnum:(TouchLifeCycleStateTypeEnum) type
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint p = [touch locationInView:self];
+
+    if (type == TouchLifeCycleStateTypeBegin)
+        self.countOfInvalidTouchPoints = 0;
+    
+    if([self touchedInsideTracingArea:p])
+    {
+        if (self.countOfInvalidTouchPoints < 2)
+        {
+            [self updateHandWritingBezierPathWithPoint:p forTouchLifeCycleStateTypeEnum:type];
+            self.countOfInvalidTouchPoints = 0;
+        }
+    }
+    else
+    {
+        self.countOfInvalidTouchPoints++;
+    }
+}
+
+- (void)updateHandWritingBezierPathWithPoint:(CGPoint) p forTouchLifeCycleStateTypeEnum:(TouchLifeCycleStateTypeEnum)type
+{
+    if (type == TouchLifeCycleStateTypeBegin)
+        [self.handWritingBezierPath moveToPoint:p];
+    else if(type == TouchLifeCycleStateTypeMoved)
+        [self.handWritingBezierPath addLineToPoint:p];
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.delegate drawViewTapped];
-    
-    UITouch *touch = [touches anyObject];
-    CGPoint p = [touch locationInView:self];
-    
-    if([self touchedInsideTracingArea:p])
-        [self.handWritingBezierPath moveToPoint:p];
+    [self handleTouch:touches withEvent:event withTouchLifeCycleStateTypeEnum:TouchLifeCycleStateTypeBegin];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UITouch *touch = [touches anyObject];
-    CGPoint p = [touch locationInView:self];
-    
-    if([self touchedInsideTracingArea:p])
-        [self.handWritingBezierPath addLineToPoint:p];
-    
+    [self handleTouch:touches withEvent:event withTouchLifeCycleStateTypeEnum:TouchLifeCycleStateTypeMoved];
     [self setNeedsDisplay];
 }
 
