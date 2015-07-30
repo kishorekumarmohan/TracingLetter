@@ -104,7 +104,7 @@ typedef enum : NSUInteger {
         else
         {
             self.fontSize = 550.f;
-            self.handWritingLineWidth = 25.0f;
+            self.handWritingLineWidth = 30.0f;
         }
     }
     else

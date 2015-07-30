@@ -35,24 +35,6 @@
                                     <action selector="colorLensButtonTapped:" destination="QTR-L6-mWq" eventType="touchUpInside" id="z7W-dp-zua"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O07-MV-Z5j">
-                                <rect key="frame" x="72" y="544" width="456" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="nwg-AV-dAk"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMf-NM-yuI">
-                                <rect key="frame" x="536" y="544" width="48" height="48"/>
-                                <state key="normal" backgroundImage="ic_arrow_forward_white_48pt">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="forwardButtonTapped:" destination="QTR-L6-mWq" eventType="touchUpInside" id="UXm-Tk-sqE"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGA-9i-uZ8" customClass="CustomRoundedView">
                                 <rect key="frame" x="16" y="120" width="232" height="120"/>
                                 <subviews>
@@ -188,6 +170,33 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O07-MV-Z5j">
+                                <rect key="frame" x="72" y="544" width="456" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="nwg-AV-dAk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMf-NM-yuI">
+                                <rect key="frame" x="536" y="544" width="48" height="48"/>
+                                <state key="normal" backgroundImage="ic_arrow_forward_white_48pt">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="forwardButtonTapped:" destination="QTR-L6-mWq" eventType="touchUpInside" id="UXm-Tk-sqE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56g-mb-olF">
+                                <rect key="frame" x="72" y="72" width="48" height="48"/>
+                                <state key="normal" backgroundImage="ic_volume_off_white_48pt">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="volumeButtonTapped:" destination="QTR-L6-mWq" eventType="touchUpInside" id="plb-pt-yed"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.26274511220000002" green="0.44313728810000003" blue="0.11372549830000001" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -195,8 +204,11 @@
                             <constraint firstItem="kGA-9i-uZ8" firstAttribute="top" secondItem="AVW-sH-EZT" secondAttribute="bottom" id="4jW-Jt-b5g"/>
                             <constraint firstItem="AVW-sH-EZT" firstAttribute="top" secondItem="aiP-MJ-umQ" secondAttribute="bottom" constant="8" id="7Ru-BZ-Ynz"/>
                             <constraint firstItem="mE0-ic-3cj" firstAttribute="top" secondItem="pj5-4f-xBK" secondAttribute="bottom" constant="8" id="BnB-R0-mMG"/>
+                            <constraint firstItem="56g-mb-olF" firstAttribute="top" secondItem="aiP-MJ-umQ" secondAttribute="bottom" constant="8" id="CKe-Oc-nNE"/>
+                            <constraint firstItem="kGA-9i-uZ8" firstAttribute="top" secondItem="56g-mb-olF" secondAttribute="bottom" id="Dfo-GS-4NM"/>
                             <constraint firstItem="kGA-9i-uZ8" firstAttribute="leading" secondItem="zBv-ia-7yh" secondAttribute="leadingMargin" id="cuG-P8-bxf"/>
                             <constraint firstItem="O07-MV-Z5j" firstAttribute="leading" secondItem="pj5-4f-xBK" secondAttribute="trailing" constant="8" id="iPw-al-gfq"/>
+                            <constraint firstItem="56g-mb-olF" firstAttribute="leading" secondItem="AVW-sH-EZT" secondAttribute="trailing" constant="8" id="pFB-fH-xRe"/>
                             <constraint firstItem="FMf-NM-yuI" firstAttribute="trailing" secondItem="zBv-ia-7yh" secondAttribute="trailingMargin" id="pQZ-yZ-1Ka"/>
                             <constraint firstItem="mE0-ic-3cj" firstAttribute="top" secondItem="O07-MV-Z5j" secondAttribute="bottom" constant="8" id="rzL-4r-Ziq"/>
                             <constraint firstItem="pj5-4f-xBK" firstAttribute="leading" secondItem="zBv-ia-7yh" secondAttribute="leadingMargin" id="sIY-7c-9cY"/>
@@ -208,6 +220,7 @@
                         <outlet property="backButton" destination="pj5-4f-xBK" id="8XX-T2-aIg"/>
                         <outlet property="colorPickerView" destination="kGA-9i-uZ8" id="jDO-6b-k5i"/>
                         <outlet property="forwardButton" destination="FMf-NM-yuI" id="spI-0c-m9g"/>
+                        <outlet property="volumeButton" destination="56g-mb-olF" id="SJM-Fx-n5x"/>
                         <outlet property="word" destination="O07-MV-Z5j" id="AJn-Kl-whl"/>
                     </connections>
                 </viewController>
@@ -356,6 +369,7 @@
         <image name="ic_arrow_back_white_48pt" width="48" height="48"/>
         <image name="ic_arrow_forward_white_48pt" width="48" height="48"/>
         <image name="ic_color_lens_white_48pt" width="48" height="48"/>
+        <image name="ic_volume_off_white_48pt" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bpY-bL-SOa"/>

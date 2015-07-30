@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIView *colorPickerView;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
+@property (weak, nonatomic) IBOutlet UIButton *volumeButton;
+@property (nonatomic, assign) NSInteger buttonState;
 
 @property (nonatomic, assign) NSInteger index;
 @end
@@ -100,7 +102,10 @@
     [self drawView].handWritingStrokeColor = color;
     self.colorPickerView.hidden = YES;
 }
-
+- (IBAction)volumeButtonTapped:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+}
 
 #pragma mark - helper
 
