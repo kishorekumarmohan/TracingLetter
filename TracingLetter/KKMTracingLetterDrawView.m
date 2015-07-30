@@ -42,6 +42,11 @@ typedef enum : NSUInteger {
     return self;
 }
 
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
 #pragma mark - drawing
 
 -(void)layoutSubviews
@@ -63,7 +68,7 @@ typedef enum : NSUInteger {
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     NSString *string = self.letterString;
-    UIFont *font = [UIFont fontWithName:@"TamilSangamMN" size:self.fontSize];
+    UIFont *font = [UIFont fontWithName:self.fontName size:self.fontSize];
 
     self.traceLetterBezierPath = [string bezierPathWithFont:font bounds:self.bounds];
     // The path is upside down (CG coordinate system)
@@ -135,11 +140,33 @@ typedef enum : NSUInteger {
 
 #pragma mark - Touch
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.delegate drawViewTapped];
+    [self handleTouch:touches withEvent:event withTouchLifeCycleStateTypeEnum:TouchLifeCycleStateTypeBegin];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self handleTouch:touches withEvent:event withTouchLifeCycleStateTypeEnum:TouchLifeCycleStateTypeMoved];
+    [self setNeedsDisplay];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self touchesEnded:touches withEvent:event];
+}
+
 - (void)handleTouch:(NSSet *)touches withEvent:(UIEvent *)event withTouchLifeCycleStateTypeEnum:(TouchLifeCycleStateTypeEnum) type
 {
     UITouch *touch = [touches anyObject];
     CGPoint p = [touch locationInView:self];
-
+    
     if (type == TouchLifeCycleStateTypeBegin)
         self.countOfInvalidTouchPoints = 0;
     
@@ -165,32 +192,17 @@ typedef enum : NSUInteger {
         [self.handWritingBezierPath addLineToPoint:p];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.delegate drawViewTapped];
-    [self handleTouch:touches withEvent:event withTouchLifeCycleStateTypeEnum:TouchLifeCycleStateTypeBegin];
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self handleTouch:touches withEvent:event withTouchLifeCycleStateTypeEnum:TouchLifeCycleStateTypeMoved];
-    [self setNeedsDisplay];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self touchesMoved:touches withEvent:event];
-}
-
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self touchesEnded:touches withEvent:event];
-}
-
 - (BOOL)touchedInsideTracingArea:(CGPoint)point
 {
     BOOL touchedInside = CGPathContainsPoint(self.traceLetterBezierPath.CGPath, nil, point, YES);
     return touchedInside;
+}
+
+#pragma mark - Motion
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake)
+        [self cleanUp];
 }
 
 

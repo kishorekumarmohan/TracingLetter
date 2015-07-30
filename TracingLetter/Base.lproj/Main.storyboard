@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T2D-md-BHM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QTR-L6-mWq">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -27,7 +27,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVW-sH-EZT">
-                                <rect key="frame" x="16" y="72" width="48" height="48"/>
+                                <rect key="frame" x="16" y="28" width="48" height="48"/>
                                 <state key="normal" image="ic_color_lens_white_48pt">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGA-9i-uZ8" customClass="CustomRoundedView">
-                                <rect key="frame" x="16" y="120" width="232" height="120"/>
+                                <rect key="frame" x="16" y="76" width="232" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JzB-Fu-Qeg" customClass="CustomRoundedButton">
                                         <rect key="frame" x="8" y="8" width="48" height="48"/>
@@ -189,13 +189,22 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56g-mb-olF">
-                                <rect key="frame" x="72" y="72" width="48" height="48"/>
+                                <rect key="frame" x="72" y="28" width="48" height="48"/>
                                 <state key="normal" image="ic_volume_off_white_48pt">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="selected" image="ic_volume_up_white_48pt"/>
                                 <connections>
                                     <action selector="volumeButtonTapped:" destination="QTR-L6-mWq" eventType="touchUpInside" id="plb-pt-yed"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPu-5U-3wS">
+                                <rect key="frame" x="536" y="28" width="48" height="48"/>
+                                <state key="normal" image="ic_delete_white_48pt">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteButtonTapped:" destination="QTR-L6-mWq" eventType="touchUpInside" id="U4d-0B-8IN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -207,6 +216,8 @@
                             <constraint firstItem="mE0-ic-3cj" firstAttribute="top" secondItem="pj5-4f-xBK" secondAttribute="bottom" constant="8" id="BnB-R0-mMG"/>
                             <constraint firstItem="56g-mb-olF" firstAttribute="top" secondItem="aiP-MJ-umQ" secondAttribute="bottom" constant="8" id="CKe-Oc-nNE"/>
                             <constraint firstItem="kGA-9i-uZ8" firstAttribute="top" secondItem="56g-mb-olF" secondAttribute="bottom" id="Dfo-GS-4NM"/>
+                            <constraint firstItem="DPu-5U-3wS" firstAttribute="top" secondItem="aiP-MJ-umQ" secondAttribute="bottom" constant="8" id="GyO-no-K5U"/>
+                            <constraint firstItem="DPu-5U-3wS" firstAttribute="trailing" secondItem="zBv-ia-7yh" secondAttribute="trailingMargin" id="ceY-KK-mya"/>
                             <constraint firstItem="kGA-9i-uZ8" firstAttribute="leading" secondItem="zBv-ia-7yh" secondAttribute="leadingMargin" id="cuG-P8-bxf"/>
                             <constraint firstItem="O07-MV-Z5j" firstAttribute="leading" secondItem="pj5-4f-xBK" secondAttribute="trailing" constant="8" id="iPw-al-gfq"/>
                             <constraint firstItem="56g-mb-olF" firstAttribute="leading" secondItem="AVW-sH-EZT" secondAttribute="trailing" constant="8" id="pFB-fH-xRe"/>
@@ -217,6 +228,7 @@
                             <constraint firstItem="FMf-NM-yuI" firstAttribute="leading" secondItem="O07-MV-Z5j" secondAttribute="trailing" constant="8" id="yTd-Py-Va3"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="YsN-iQ-KK7"/>
                     <connections>
                         <outlet property="backButton" destination="pj5-4f-xBK" id="8XX-T2-aIg"/>
                         <outlet property="colorPickerView" destination="kGA-9i-uZ8" id="jDO-6b-k5i"/>
@@ -227,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwU-eC-vHc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1847" y="402"/>
+            <point key="canvasLocation" x="1091" y="403"/>
         </scene>
         <!--Trace Letters & Numbers-->
         <scene sceneID="ymR-nZ-KpY">
@@ -241,7 +253,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7b-jX-nLo" customClass="CustomRoundedButton">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7b-jX-nLo" customClass="CustomRoundedButton">
                                 <rect key="frame" x="16" y="72" width="568" height="140"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -261,7 +273,7 @@
                                     <segue destination="QTR-L6-mWq" kind="show" identifier="button1" id="fUW-78-Ap0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66v-Mu-aTd" customClass="CustomRoundedButton">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66v-Mu-aTd" customClass="CustomRoundedButton">
                                 <rect key="frame" x="16" y="220" width="568" height="140"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -278,7 +290,7 @@
                                     <segue destination="QTR-L6-mWq" kind="show" identifier="button2" id="BaW-bX-Gmr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FZ-Hg-5Jq" customClass="CustomRoundedButton">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FZ-Hg-5Jq" customClass="CustomRoundedButton">
                                 <rect key="frame" x="16" y="368" width="568" height="140"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -345,31 +357,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ArU-4Q-bka" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1146" y="402"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="62W-fH-Van">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T2D-md-BHM" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C6g-6D-chh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="bkx-1q-nEr" kind="relationship" relationship="rootViewController" id="pTc-6p-ezy"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nEr-eQ-QgJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="334" y="403"/>
+            <point key="canvasLocation" x="808" y="1089"/>
         </scene>
     </scenes>
     <resources>
         <image name="ic_arrow_back_white_48pt" width="48" height="48"/>
         <image name="ic_arrow_forward_white_48pt" width="48" height="48"/>
         <image name="ic_color_lens_white_48pt" width="48" height="48"/>
+        <image name="ic_delete_white_48pt" width="48" height="48"/>
         <image name="ic_volume_off_white_48pt" width="48" height="48"/>
         <image name="ic_volume_up_white_48pt" width="48" height="48"/>
     </resources>

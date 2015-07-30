@@ -6,6 +6,8 @@
 	<dict>
 		<key>title</key>
 		<string>தமிழ்</string>
+		<key>fontName</key>
+		<string>TamilSangamMN-Bold</string>
 		<key>button1</key>
 		<dict>
 			<key>name</key>

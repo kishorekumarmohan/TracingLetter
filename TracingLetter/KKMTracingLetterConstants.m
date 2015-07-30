@@ -21,6 +21,8 @@ NSString* const KKMValues = @"values";
 NSString* const KKMLetter = @"letter";
 NSString* const KKMWord = @"word";
 
+NSString* const KKMFontName = @"fontName";
+
 
 
 @implementation KKMTracingLetterConstants

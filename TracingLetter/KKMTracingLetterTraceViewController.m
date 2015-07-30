@@ -21,19 +21,39 @@
 @property (weak, nonatomic) IBOutlet UIButton *volumeButton;
 @property (nonatomic, assign) NSInteger buttonState;
 
+@property (nonatomic, strong) NSDictionary *languageDataDict;
 @property (nonatomic, assign) NSInteger index;
+
 @end
 
 @implementation KKMTracingLetterTraceViewController
 
+#pragma mark - view lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    [self setupPropertyList];
     [self setupDrawView];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(cleanUp)];
+    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(cleanUp)];
     self.colorPickerView.hidden = YES;
     self.backButton.hidden = YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.view becomeFirstResponder];
+}
+
+#pragma mark - setup
+- (void)setupPropertyList
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:KKMPropertyListDataFile ofType:@"plist"];
+    NSDictionary *languageDict = [NSDictionary dictionaryWithContentsOfFile:path];
+    self.languageDataDict = languageDict[KKMLanguageNameTamil];
+    self.dataDict = self.languageDataDict[KKMButton1];
+    
 }
 
 - (void)setupDrawView
@@ -41,6 +61,7 @@
     KKMTracingLetterDrawView *drawView = [self drawView];
     drawView.delegate = self;
     drawView.letterString = self.dataDict[KKMValues][0][0];
+    drawView.fontName = self.languageDataDict[KKMFontName];
     self.word.text = self.dataDict[KKMValues][1][0];
 }
 
@@ -106,6 +127,11 @@
 {
     UIButton *button = (UIButton *)sender;
     button.selected = !button.selected;
+}
+
+- (IBAction)deleteButtonTapped:(id)sender
+{
+    [self cleanUp];
 }
 
 #pragma mark - helper

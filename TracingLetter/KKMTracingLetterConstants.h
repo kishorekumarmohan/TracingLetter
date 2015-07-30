@@ -20,9 +20,7 @@ extern NSString* const KKMValues;
 
 extern NSString* const KKMLetter;
 extern NSString* const KKMWord;
-
-
-
+extern NSString* const KKMFontName;
 
 
 @interface KKMTracingLetterConstants : NSObject
