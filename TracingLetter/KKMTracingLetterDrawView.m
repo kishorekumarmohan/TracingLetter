@@ -89,11 +89,11 @@ typedef enum : NSUInteger {
     }
     
     [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeTranslation(x, y)];
-
-    
+   
     CGContextAddPath(context, self.traceLetterBezierPath.CGPath);
     CGContextSetStrokeColorWithColor(context,[UIColor yellowColor].CGColor);
-    CGContextSetLineWidth(context, 2);
+    CGContextSetLineWidth(context, 4);
+    CGContextSetLineCap(context, kCGLineCapRound);
     CGContextStrokePath(context);
 }
 

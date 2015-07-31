@@ -19,10 +19,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 @property (weak, nonatomic) IBOutlet UIButton *volumeButton;
-@property (nonatomic, assign) NSInteger buttonState;
+@property (weak, nonatomic) IBOutlet UIView *menuPickerView;
+@property (weak, nonatomic) IBOutlet UIButton *menuButton;
+@property (weak, nonatomic) IBOutlet UIButton *menuButton1;
+@property (weak, nonatomic) IBOutlet UIButton *menuButton2;
+@property (weak, nonatomic) IBOutlet UIButton *menuButton3;
 
+@property (nonatomic, assign) NSInteger buttonState;
 @property (nonatomic, strong) NSDictionary *languageDataDict;
 @property (nonatomic, assign) NSInteger index;
+@property (nonatomic, assign) BOOL isShown;
 
 @end
 
@@ -35,8 +41,11 @@
     
     [self setupPropertyList];
     [self setupDrawView];
-    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(cleanUp)];
+    [self setUpInitialLetterAndWord];
+    [self setupMenuButtonItems];
+
     self.colorPickerView.hidden = YES;
+    self.menuPickerView.hidden = YES;
     self.backButton.hidden = YES;
 }
 
@@ -60,9 +69,21 @@
 {
     KKMTracingLetterDrawView *drawView = [self drawView];
     drawView.delegate = self;
-    drawView.letterString = self.dataDict[KKMValues][0][0];
     drawView.fontName = self.languageDataDict[KKMFontName];
+}
+
+- (void)setUpInitialLetterAndWord
+{
+    KKMTracingLetterDrawView *drawView = [self drawView];
+    drawView.letterString = self.dataDict[KKMValues][0][0];
     self.word.text = self.dataDict[KKMValues][1][0];
+}
+
+- (void)setupMenuButtonItems
+{
+    [self.menuButton1 setTitle:self.languageDataDict[KKMButton1][KKMName] forState:UIControlStateNormal];
+    [self.menuButton2 setTitle:self.languageDataDict[KKMButton2][KKMName] forState:UIControlStateNormal];
+    [self.menuButton3 setTitle:self.languageDataDict[KKMButton3][KKMName] forState:UIControlStateNormal];
 }
 
 #pragma mark - Button actions
@@ -87,11 +108,7 @@
     if ([key isEqualToString:@"forward"])
     {
         if((letterArray.count - 1) > self.index)
-        {
             self.index++;
-            drawView.letterString = letterArray[self.index];
-            self.word.text = wordArray[self.index];
-        }
 
         if ((letterArray.count -1) == self.index)
             self.forwardButton.hidden = YES;
@@ -99,22 +116,30 @@
     else if ([key isEqualToString:@"back"])
     {
         if(self.index > 0)
-        {
             self.index--;
-            drawView.letterString = letterArray[self.index];
-            self.word.text = wordArray[self.index];
-        }
         
         if (self.index == 0)
             self.backButton.hidden = YES;
     }
+    else
+    {
+        self.index = 0;
+        self.forwardButton.hidden = NO;
+        self.backButton.hidden = YES;
+    }
     
-    [drawView cleanUp];    
+    drawView.letterString = letterArray[self.index];
+    self.word.text = wordArray[self.index];
+
+    [self drawViewTapped];
+    [self cleanUp];
     [drawView setNeedsDisplay];
 }
+
 - (IBAction)colorLensButtonTapped:(id)sender
 {
     self.colorPickerView.hidden = NO;
+    self.menuPickerView.hidden = YES;
 }
 - (IBAction)colorButtonTapped:(id)sender
 {
@@ -132,6 +157,35 @@
 - (IBAction)deleteButtonTapped:(id)sender
 {
     [self cleanUp];
+}
+
+- (IBAction)menuButtonTapped:(id)sender
+{
+    self.menuPickerView.hidden = NO;
+    self.colorPickerView.hidden = YES;
+    
+    CGRect orignalFrame = self.menuPickerView.frame;
+    CGRect modifiedFrame = self.menuPickerView.frame;
+    modifiedFrame.size = CGSizeZero;
+
+    self.menuPickerView.frame =  modifiedFrame;
+    [UIView animateWithDuration:0.25 animations:^{
+        self.menuPickerView.frame =  orignalFrame;
+    }];
+}
+
+- (IBAction)menuItemButtonTapped:(id)sender
+{
+    CustomRoundedButton *button = (CustomRoundedButton *)sender;
+    if(button.tag == 0)
+        self.dataDict = self.languageDataDict[KKMButton1];
+    else if(button.tag == 1)
+        self.dataDict = self.languageDataDict[KKMButton2];
+    else if (button.tag == 2)
+        self.dataDict = self.languageDataDict[KKMButton3];
+    
+    [self refreshView:nil];
+    [[self drawView] setNeedsDisplay];
 }
 
 #pragma mark - helper
@@ -152,6 +206,7 @@
 -(void)drawViewTapped
 {
     self.colorPickerView.hidden = YES;
+    self.menuPickerView.hidden = YES;
 }
 
 @end
