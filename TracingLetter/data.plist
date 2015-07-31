@@ -42,6 +42,10 @@
 					<string>ஓடம்</string>
 					<string>ஒளவை</string>
 				</array>
+				<dict>
+					<key>இ</key>
+					<string>top</string>
+				</dict>
 			</array>
 		</dict>
 		<key>button2</key>

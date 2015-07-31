@@ -20,7 +20,8 @@
 
 @property (nonatomic, strong) NSString *letterString;
 @property (nonatomic, strong) UIColor *handWritingStrokeColor;
-@property (nonatomic, strong) NSString *fontName;
+@property (nonatomic, strong) NSString *fontNameString;
+@property (nonatomic, strong) NSDictionary *dataDict;
 
 - (void)cleanUp;
 

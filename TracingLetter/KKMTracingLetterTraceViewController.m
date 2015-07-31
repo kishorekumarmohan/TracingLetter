@@ -14,11 +14,10 @@
 
 @interface KKMTracingLetterTraceViewController ()<KKMTracingLetterDrawViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *word;
+@property (weak, nonatomic) IBOutlet UILabel *wordLabel;
 @property (weak, nonatomic) IBOutlet UIView *colorPickerView;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
-@property (weak, nonatomic) IBOutlet UIButton *volumeButton;
 @property (weak, nonatomic) IBOutlet UIView *menuPickerView;
 @property (weak, nonatomic) IBOutlet UIButton *menuButton;
 @property (weak, nonatomic) IBOutlet UIButton *menuButton1;
@@ -47,6 +46,17 @@
     self.colorPickerView.hidden = YES;
     self.menuPickerView.hidden = YES;
     self.backButton.hidden = YES;
+    
+    ///
+    
+    NSArray *fontFamilies = [UIFont familyNames];
+    
+    for (int i = 0; i < [fontFamilies count]; i++)
+    {
+        NSString *fontFamily = [fontFamilies objectAtIndex:i];
+        NSArray *fontNames = [UIFont fontNamesForFamilyName:[fontFamilies objectAtIndex:i]];
+        NSLog (@"%@: %@", fontFamily, fontNames);
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -62,21 +72,21 @@
     NSDictionary *languageDict = [NSDictionary dictionaryWithContentsOfFile:path];
     self.languageDataDict = languageDict[KKMLanguageNameTamil];
     self.dataDict = self.languageDataDict[KKMButton1];
-    
 }
 
 - (void)setupDrawView
 {
     KKMTracingLetterDrawView *drawView = [self drawView];
     drawView.delegate = self;
-    drawView.fontName = self.languageDataDict[KKMFontName];
+    drawView.fontNameString = self.languageDataDict[KKMFontName];
+    drawView.dataDict = self.dataDict;
 }
 
 - (void)setUpInitialLetterAndWord
 {
     KKMTracingLetterDrawView *drawView = [self drawView];
     drawView.letterString = self.dataDict[KKMValues][0][0];
-    self.word.text = self.dataDict[KKMValues][1][0];
+    self.wordLabel.text = self.dataDict[KKMValues][1][0];
 }
 
 - (void)setupMenuButtonItems
@@ -129,7 +139,7 @@
     }
     
     drawView.letterString = letterArray[self.index];
-    self.word.text = wordArray[self.index];
+    self.wordLabel.text = wordArray[self.index];
 
     [self drawViewTapped];
     [self cleanUp];
@@ -147,11 +157,6 @@
     UIColor *color = button.backgroundColor;
     [self drawView].handWritingStrokeColor = color;
     self.colorPickerView.hidden = YES;
-}
-- (IBAction)volumeButtonTapped:(id)sender
-{
-    UIButton *button = (UIButton *)sender;
-    button.selected = !button.selected;
 }
 
 - (IBAction)deleteButtonTapped:(id)sender

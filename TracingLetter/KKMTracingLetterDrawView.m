@@ -10,6 +10,7 @@
 #import "KKMTracingLetterDrawView.h"
 #import "NSString+Glyphs.h"
 #import "DeviceUtil.h"
+#import "KKMTracingLetterConstants.h"
 
 typedef enum : NSUInteger {
     TouchLifeCycleStateTypeBegin = 0,
@@ -17,6 +18,9 @@ typedef enum : NSUInteger {
     TouchLifeCycleStateTypeCancelled,
     TouchLifeCycleStateTypeEnded
 } TouchLifeCycleStateTypeEnum;
+
+CGFloat const KKMiPadLineWidth = 30;
+CGFloat const KKMiPhoneLineWidth = 20;
 
 @interface KKMTracingLetterDrawView()
 
@@ -64,16 +68,38 @@ typedef enum : NSUInteger {
     [self drawHandWritingLetter];
 }
 
+- (void)fontSizeAndLineWidth
+{
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        self.fontSize = 550.f;
+        self.handWritingLineWidth = KKMiPadLineWidth;
+    }
+    else
+    {
+        if ([DeviceUtil hardware] == IPHONE_4S)
+            self.fontSize = 290.0f;
+        else if([DeviceUtil hardware] == IPHONE_5 || [DeviceUtil hardware] == IPHONE_5S)
+            self.fontSize = 310.0f;
+        else
+            self.fontSize = 350.0f;
+        
+        self.handWritingLineWidth = KKMiPhoneLineWidth;
+    }
+}
+
 - (void)drawTracingLetter
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     NSString *string = self.letterString;
-    UIFont *font = [UIFont fontWithName:self.fontName size:self.fontSize];
+    UIFont *font = [UIFont fontWithName:self.fontNameString size:self.fontSize];
 
     self.traceLetterBezierPath = [string bezierPathWithFont:font bounds:self.bounds];
     // The path is upside down (CG coordinate system)
     CGRect boundingBox = CGPathGetBoundingBox(self.traceLetterBezierPath.CGPath);
     [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeScale(1.0, -1.0)];
+    
+    NSString *hint = self.dataDict[KKMValues][2][self.letterString];
     
     CGFloat x = 0;
     CGFloat y = 0;
@@ -85,7 +111,10 @@ typedef enum : NSUInteger {
     else
     {
         x = (self.bounds.size.width - boundingBox.size.width) / 2;
-        y = (self.bounds.size.height) / 1.5;
+        if ([hint isEqualToString:@"top"])
+            y = (self.bounds.size.height) / 1.2;
+        else
+            y = (self.bounds.size.height) / 1.5;
     }
     
     [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeTranslation(x, y)];
@@ -95,39 +124,6 @@ typedef enum : NSUInteger {
     CGContextSetLineWidth(context, 4);
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextStrokePath(context);
-}
-
-- (void)fontSizeAndLineWidth
-{
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        if(UIInterfaceOrientationIsPortrait(orientation))
-        {
-            self.fontSize = 450.f;
-            self.handWritingLineWidth = 20.0f;
-        }
-        else
-        {
-            self.fontSize = 550.f;
-            self.handWritingLineWidth = 30.0f;
-        }
-    }
-    else
-    {
-        if ([DeviceUtil hardware] == IPHONE_5S)
-            self.fontSize = 300.0f;
-        else
-            self.fontSize = 300.0f;
-        
-        self.handWritingLineWidth = 15.0f;
-        
-        if(UIInterfaceOrientationIsPortrait(orientation))
-        {
-            if (self.letterString.length > 1)
-                self.fontSize = 250.0f;
-        }
-    }
 }
 
 - (void)drawHandWritingLetter
@@ -162,7 +158,7 @@ typedef enum : NSUInteger {
     [self touchesEnded:touches withEvent:event];
 }
 
-- (void)handleTouch:(NSSet *)touches withEvent:(UIEvent *)event withTouchLifeCycleStateTypeEnum:(TouchLifeCycleStateTypeEnum) type
+- (void)handleTouch:(NSSet *)touches withEvent:(UIEvent *)event withTouchLifeCycleStateTypeEnum:(TouchLifeCycleStateTypeEnum)type
 {
     UITouch *touch = [touches anyObject];
     CGPoint p = [touch locationInView:self];
@@ -170,7 +166,7 @@ typedef enum : NSUInteger {
     if (type == TouchLifeCycleStateTypeBegin)
         self.countOfInvalidTouchPoints = 0;
     
-    if([self touchedInsideTracingArea:p])
+    if([self touchedInsideTracingArea:p withTouchLifeCycleStateTypeEnum:type])
     {
         if (self.countOfInvalidTouchPoints < 2)
         {
@@ -192,10 +188,19 @@ typedef enum : NSUInteger {
         [self.handWritingBezierPath addLineToPoint:p];
 }
 
-- (BOOL)touchedInsideTracingArea:(CGPoint)point
+- (BOOL)touchedInsideTracingArea:(CGPoint)point withTouchLifeCycleStateTypeEnum:(TouchLifeCycleStateTypeEnum)type
 {
-    BOOL touchedInside = CGPathContainsPoint(self.traceLetterBezierPath.CGPath, nil, point, YES);
-    return touchedInside;
+    if (type == TouchLifeCycleStateTypeBegin)
+    {
+        return [self.traceLetterBezierPath containsPoint:point];
+    }
+    else
+    {
+        CGPathRef strokedPath = CGPathCreateCopyByStrokingPath(self.traceLetterBezierPath.CGPath, NULL, 30, kCGLineCapRound, kCGLineJoinRound, 1);
+        BOOL pointIsNearPath = CGPathContainsPoint(strokedPath, NULL, point, NO);
+        CGPathRelease(strokedPath);
+        return pointIsNearPath;
+    }
 }
 
 #pragma mark - Motion
