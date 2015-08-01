@@ -82,7 +82,7 @@ CGFloat const KKMiPhoneLineWidth = 20;
         else if([DeviceUtil hardware] == IPHONE_5 || [DeviceUtil hardware] == IPHONE_5S)
             self.fontSize = 310.0f;
         else
-            self.fontSize = 350.0f;
+            self.fontSize = 400.0f;
         
         self.handWritingLineWidth = KKMiPhoneLineWidth;
     }
@@ -112,7 +112,7 @@ CGFloat const KKMiPhoneLineWidth = 20;
     {
         x = (self.bounds.size.width - boundingBox.size.width) / 2;
         if ([hint isEqualToString:@"top"])
-            y = (self.bounds.size.height) / 1.2;
+            y = (self.bounds.size.height) / 1.15;
         else
             y = (self.bounds.size.height) / 1.5;
     }
