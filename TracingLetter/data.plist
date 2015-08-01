@@ -57,11 +57,40 @@
 				<array>
 					<string>க்</string>
 					<string>ங்</string>
+					<string>ச்</string>
+					<string>ஞ்</string>
+					<string>ட்</string>
+					<string>ண்</string>
+					<string>த்</string>
+					<string>ந்</string>
+					<string>ப்</string>
+					<string>ம்</string>
+					<string>ய்</string>
+					<string>ர்</string>
+					<string>ல்</string>
+					<string>வ்</string>
+					<string>ழ்</string>
+					<string>ள்</string>
+					<string>ற்</string>
+					<string>ன்</string>
 				</array>
-				<array>
-					<string>அம்மா</string>
-					<string>அம்மா</string>
-				</array>
+				<array/>
+				<dict>
+					<key>all</key>
+					<string>top</string>
+					<key>ஞ்</key>
+					<string>bottom</string>
+					<key>த்</key>
+					<string>bottom</string>
+					<key>ந்</key>
+					<string>bottom</string>
+					<key>ர்</key>
+					<string>bottom</string>
+					<key>ழ்</key>
+					<string>bottom</string>
+					<key>ற்</key>
+					<string>bottom</string>
+				</dict>
 			</array>
 		</dict>
 		<key>button3</key>

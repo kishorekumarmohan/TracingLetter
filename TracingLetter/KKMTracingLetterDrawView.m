@@ -80,9 +80,9 @@ CGFloat const KKMiPhoneLineWidth = 20;
         if ([DeviceUtil hardware] == IPHONE_4S)
             self.fontSize = 290.0f;
         else if([DeviceUtil hardware] == IPHONE_5 || [DeviceUtil hardware] == IPHONE_5S)
-            self.fontSize = 310.0f;
+            self.fontSize = 320.0f;
         else
-            self.fontSize = 400.0f;
+            self.fontSize = 380.0f;
         
         self.handWritingLineWidth = KKMiPhoneLineWidth;
     }
@@ -99,22 +99,27 @@ CGFloat const KKMiPhoneLineWidth = 20;
     CGRect boundingBox = CGPathGetBoundingBox(self.traceLetterBezierPath.CGPath);
     [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeScale(1.0, -1.0)];
     
-    NSString *hint = self.dataDict[KKMValues][2][self.letterString];
-    
-    CGFloat x = 0;
+    CGFloat x = (self.bounds.size.width - boundingBox.size.width) / 2;
     CGFloat y = 0;
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
-        x = (self.bounds.size.width - boundingBox.size.width) / 2;
         y = self.bounds.size.height / 1.5;
     }
     else
     {
-        x = (self.bounds.size.width - boundingBox.size.width) / 2;
+        NSString *hint = [self presentationHint];
         if ([hint isEqualToString:@"top"])
             y = (self.bounds.size.height) / 1.15;
+        else if ([hint isEqualToString:@"bottom"])
+            y = (self.bounds.size.height) / 1.35;
         else
             y = (self.bounds.size.height) / 1.5;
+    }
+    
+    if (boundingBox.size.height + 15 > self.bounds.size.height)
+    {
+        CGFloat scale = 0.95f;
+        [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeScale(scale, scale)];
     }
     
     [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeTranslation(x, y)];
@@ -124,6 +129,15 @@ CGFloat const KKMiPhoneLineWidth = 20;
     CGContextSetLineWidth(context, 4);
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextStrokePath(context);
+}
+
+- (NSString *)presentationHint
+{
+    NSString *hint = self.dataDict[KKMValues][2][self.letterString];
+    if (hint == nil)
+        hint = self.dataDict[KKMValues][2][KKMAll];
+
+    return hint;
 }
 
 - (void)drawHandWritingLetter

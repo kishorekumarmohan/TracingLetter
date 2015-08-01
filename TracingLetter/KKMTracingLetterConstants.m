@@ -23,6 +23,8 @@ NSString* const KKMWord = @"word";
 
 NSString* const KKMFontName = @"fontName";
 
+NSString* const KKMAll = @"all";
+
 
 
 @implementation KKMTracingLetterConstants

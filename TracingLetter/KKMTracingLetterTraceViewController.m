@@ -48,15 +48,13 @@
     self.backButton.hidden = YES;
     
     ///
-    
-    NSArray *fontFamilies = [UIFont familyNames];
-    
-    for (int i = 0; i < [fontFamilies count]; i++)
-    {
-        NSString *fontFamily = [fontFamilies objectAtIndex:i];
-        NSArray *fontNames = [UIFont fontNamesForFamilyName:[fontFamilies objectAtIndex:i]];
-        NSLog (@"%@: %@", fontFamily, fontNames);
-    }
+//    NSArray *fontFamilies = [UIFont familyNames];
+//    for (int i = 0; i < [fontFamilies count]; i++)
+//    {
+//        NSString *fontFamily = [fontFamilies objectAtIndex:i];
+//        NSArray *fontNames = [UIFont fontNamesForFamilyName:[fontFamilies objectAtIndex:i]];
+//        NSLog (@"%@: %@", fontFamily, fontNames);
+//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -115,6 +113,7 @@
     NSArray *letterArray = self.dataDict[KKMValues][0];
     NSArray *wordArray = self.dataDict[KKMValues][1];
     KKMTracingLetterDrawView *drawView = [self drawView];
+    drawView.dataDict = self.dataDict;
     if ([key isEqualToString:@"forward"])
     {
         if((letterArray.count - 1) > self.index)
@@ -139,7 +138,10 @@
     }
     
     drawView.letterString = letterArray[self.index];
-    self.wordLabel.text = wordArray[self.index];
+    if (wordArray.count > 0)
+        self.wordLabel.text = wordArray[self.index];
+    else
+        self.wordLabel.text = nil;
 
     [self drawViewTapped];
     [self cleanUp];

@@ -22,6 +22,8 @@ extern NSString* const KKMLetter;
 extern NSString* const KKMWord;
 extern NSString* const KKMFontName;
 
+extern NSString* const KKMAll;
+
 
 @interface KKMTracingLetterConstants : NSObject
 
