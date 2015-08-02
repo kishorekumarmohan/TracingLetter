@@ -14,20 +14,20 @@
 
 @interface KKMTracingLetterTraceViewController ()<KKMTracingLetterDrawViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *wordLabel;
-@property (weak, nonatomic) IBOutlet UIView *colorPickerView;
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
-@property (weak, nonatomic) IBOutlet UIButton *forwardButton;
-@property (weak, nonatomic) IBOutlet UIView *menuPickerView;
-@property (weak, nonatomic) IBOutlet UIButton *menuButton;
-@property (weak, nonatomic) IBOutlet UIButton *menuButton1;
-@property (weak, nonatomic) IBOutlet UIButton *menuButton2;
-@property (weak, nonatomic) IBOutlet UIButton *menuButton3;
+@property (weak, nonatomic) IBOutlet UILabel    *wordLabel;
+@property (weak, nonatomic) IBOutlet UIView     *colorPickerView;
+@property (weak, nonatomic) IBOutlet UIButton   *backButton;
+@property (weak, nonatomic) IBOutlet UIButton   *forwardButton;
+@property (weak, nonatomic) IBOutlet UIView     *menuPickerView;
+@property (weak, nonatomic) IBOutlet UIButton   *menuButton;
+@property (weak, nonatomic) IBOutlet UIButton   *menuButton1;
+@property (weak, nonatomic) IBOutlet UIButton   *menuButton2;
+@property (weak, nonatomic) IBOutlet UIButton   *menuButton3;
 
-@property (nonatomic, assign) NSInteger buttonState;
-@property (nonatomic, strong) NSDictionary *languageDataDict;
-@property (nonatomic, assign) NSInteger index;
-@property (nonatomic, assign) BOOL isShown;
+@property (nonatomic, assign) NSInteger         buttonState;
+@property (nonatomic, strong) NSDictionary      *languageDataDict;
+@property (nonatomic, assign) NSInteger         index;
+@property (nonatomic, assign) BOOL              isShown;
 
 @end
 
@@ -84,7 +84,12 @@
 {
     KKMTracingLetterDrawView *drawView = [self drawView];
     drawView.letterString = self.dataDict[KKMValues][0][0];
-    self.wordLabel.text = self.dataDict[KKMValues][1][0];
+
+    NSArray *array = self.dataDict[KKMValues][1];
+    if (array.count > 0)
+    {
+        self.wordLabel.text = self.dataDict[KKMValues][1][0];
+    }
 }
 
 - (void)setupMenuButtonItems

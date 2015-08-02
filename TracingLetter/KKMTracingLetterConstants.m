@@ -9,7 +9,9 @@
 #import "KKMTracingLetterConstants.h"
 
 NSString* const KKMPropertyListDataFile = @"data";
+
 NSString* const KKMLanguageNameTamil = @"tamil";
+NSString* const KKMLanguageNameTelugu = @"telugu";
 
 NSString* const KKMButton1 = @"button1";
 NSString* const KKMButton2 = @"button2";

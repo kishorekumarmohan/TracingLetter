@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 extern NSString* const KKMPropertyListDataFile;
+
 extern NSString* const KKMLanguageNameTamil;
+extern NSString* const KKMLanguageNameTelugu;
 
 extern NSString* const KKMButton1;
 extern NSString* const KKMButton2;

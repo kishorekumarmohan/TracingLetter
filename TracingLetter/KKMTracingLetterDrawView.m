@@ -99,15 +99,26 @@ CGFloat const KKMiPhoneLineWidth = 20;
     CGRect boundingBox = CGPathGetBoundingBox(self.traceLetterBezierPath.CGPath);
     [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeScale(1.0, -1.0)];
     
+    NSLog(@"self.bounds = %f", self.bounds.size.width);
+    NSLog(@"boundingBox = %f", boundingBox.size.width);
     CGFloat x = (self.bounds.size.width - boundingBox.size.width) / 2;
+    if (x < 0)
+        x = 0;
+    
     CGFloat y = 0;
+
+    NSString *hint = [self presentationHint];
+
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         y = self.bounds.size.height / 1.5;
+
+        if ([hint isEqualToString:@"top"])
+            y = (self.bounds.size.height) / 1.15;
+
     }
     else
     {
-        NSString *hint = [self presentationHint];
         if ([hint isEqualToString:@"top"])
             y = (self.bounds.size.height) / 1.15;
         else if ([hint isEqualToString:@"bottom"])
@@ -115,14 +126,19 @@ CGFloat const KKMiPhoneLineWidth = 20;
         else
             y = (self.bounds.size.height) / 1.5;
     }
-    
-    if (boundingBox.size.height + 15 > self.bounds.size.height)
+    [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeTranslation(x, y)];
+
+    CGFloat buffer = 50.0f;
+    if(boundingBox.size.height + buffer > self.bounds.size.height)
     {
-        CGFloat scale = 0.95f;
+        CGFloat scale = self.bounds.size.height / (boundingBox.size.height + buffer);
         [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeScale(scale, scale)];
     }
-    
-    [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeTranslation(x, y)];
+    else if(boundingBox.size.width + buffer > self.bounds.size.width)
+    {
+        CGFloat scale = (self.bounds.size.width / boundingBox.size.width) - 0.05;
+        [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeScale(scale, scale)];
+    }    
    
     CGContextAddPath(context, self.traceLetterBezierPath.CGPath);
     CGContextSetStrokeColorWithColor(context,[UIColor yellowColor].CGColor);
@@ -204,13 +220,18 @@ CGFloat const KKMiPhoneLineWidth = 20;
 
 - (BOOL)touchedInsideTracingArea:(CGPoint)point withTouchLifeCycleStateTypeEnum:(TouchLifeCycleStateTypeEnum)type
 {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        return [self.traceLetterBezierPath containsPoint:point];
+    }
+    
     if (type == TouchLifeCycleStateTypeBegin)
     {
         return [self.traceLetterBezierPath containsPoint:point];
     }
     else
     {
-        CGPathRef strokedPath = CGPathCreateCopyByStrokingPath(self.traceLetterBezierPath.CGPath, NULL, 30, kCGLineCapRound, kCGLineJoinRound, 1);
+        CGPathRef strokedPath = CGPathCreateCopyByStrokingPath(self.traceLetterBezierPath.CGPath, NULL, 20, kCGLineCapRound, kCGLineJoinRound, 1);
         BOOL pointIsNearPath = CGPathContainsPoint(strokedPath, NULL, point, NO);
         CGPathRelease(strokedPath);
         return pointIsNearPath;
