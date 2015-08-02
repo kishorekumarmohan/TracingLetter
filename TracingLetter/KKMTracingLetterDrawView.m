@@ -99,8 +99,9 @@ CGFloat const KKMiPhoneLineWidth = 20;
     CGRect boundingBox = CGPathGetBoundingBox(self.traceLetterBezierPath.CGPath);
     [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeScale(1.0, -1.0)];
     
-    NSLog(@"self.bounds = %f", self.bounds.size.width);
-    NSLog(@"boundingBox = %f", boundingBox.size.width);
+    NSLog(@"%@", self.letterString);
+    NSLog(@"self.bounds.width = %f; self.bounds.height = %f", self.bounds.size.width, self.bounds.size.height);
+    NSLog(@"boundingBox.width = %f; boundingBox.height = %f", boundingBox.size.width, boundingBox.size.height);
     CGFloat x = (self.bounds.size.width - boundingBox.size.width) / 2;
     if (x < 0)
         x = 0;
@@ -115,14 +116,13 @@ CGFloat const KKMiPhoneLineWidth = 20;
 
         if ([hint isEqualToString:@"top"])
             y = (self.bounds.size.height) / 1.15;
-
     }
     else
     {
-        if ([hint isEqualToString:@"top"])
+        if ([hint isEqualToString:@"top"] || [hint isEqualToString:@"top-iphone"])
             y = (self.bounds.size.height) / 1.15;
         else if ([hint isEqualToString:@"bottom"])
-            y = (self.bounds.size.height) / 1.35;
+            y = (self.bounds.size.height) / 1.25;
         else
             y = (self.bounds.size.height) / 1.5;
     }

@@ -11,7 +11,7 @@
 		<key>button1</key>
 		<dict>
 			<key>name</key>
-			<string>உயிரெழுத்துக்கள் (Vowels)</string>
+			<string>அ</string>
 			<key>values</key>
 			<array>
 				<array>
@@ -51,7 +51,7 @@
 		<key>button2</key>
 		<dict>
 			<key>name</key>
-			<string>மெய்யெழுத்துக்கள் (Consonants)</string>
+			<string>க்</string>
 			<key>values</key>
 			<array>
 				<array>
@@ -96,7 +96,7 @@
 		<key>button3</key>
 		<dict>
 			<key>name</key>
-			<string>உயிர்மெய்ழுத்துக்கள்</string>
+			<string>க</string>
 			<key>values</key>
 			<array>
 				<array>
@@ -318,59 +318,79 @@
 				</array>
 				<array/>
 				<dict>
-                    <key>கௌ</key>
+					<key>கௌ</key>
 					<string>top</string>
+					<key>கி</key>
+					<string>top-iphone</string>
+					<key>கீ</key>
+					<string>top-iphone</string>
+					<key>கெ</key>
+					<string>top-iphone</string>
+					<key>கே</key>
+					<string>top-iphone</string>
+					<key>கொ</key>
+					<string>top-iphone</string>
+					<key>ஙி</key>
+					<string>top-iphone</string>
+					<key>ஙீ</key>
+					<string>top-iphone</string>
+					<key>ஙெ</key>
+					<string>top-iphone</string>
+					<key>ஙே</key>
+					<string>top-iphone</string>
+					<key>ஙொ</key>
+					<string>top-iphone</string>
+					<key>ஙோ</key>
+					<string>top-iphone</string>
 					<key>ஙௌ</key>
 					<string>top</string>
-                    <key>சௌ</key>
-                    <string>top</string>
-                    <key>ஞொ</key>
-                    <string>top</string>
-                    <key>ஞோ</key>
-                    <string>top</string>
-                    <key>ஞௌ</key>
-                    <string>top</string>
-                    <key>ணொ</key>
-                    <string>top</string>
-                    <key>ணோ</key>
-                    <string>top</string>
-                    <key>ணௌ</key>
-                    <string>top</string>
+					<key>சௌ</key>
+					<string>top</string>
+					<key>ஞொ</key>
+					<string>top</string>
+					<key>ஞோ</key>
+					<string>top</string>
+					<key>ஞௌ</key>
+					<string>top</string>
+					<key>ணொ</key>
+					<string>top</string>
+					<key>ணோ</key>
+					<string>top</string>
+					<key>ணௌ</key>
+					<string>top</string>
 					<key>டௌ</key>
 					<string>top</string>
-                    <key>தௌ</key>
-                    <string>top</string>
-                    <key>நௌ</key>
-                    <string>top</string>
-                    <key>பௌ</key>
-                    <string>top</string>
-                    <key>மௌ</key>
-                    <string>top</string>
-                    <key>யௌ</key>
-                    <string>top</string>
-                    <key>ரௌ</key>
-                    <string>top</string>
-                    <key>லௌ</key>
-                    <string>top</string>
-                    <key>வௌ</key>
-                    <string>top</string>
-                    <key>ழௌ</key>
-                    <string>top</string>
-                    <key>ளோ</key>
-                    <string>top</string>
-                    <key>ளோ</key>
-                    <string>top</string>
-                    <key>ளௌ</key>
-                    <string>top</string>
-                    <key>றௌ</key>
-                    <string>top</string>
-                    <key>னொ</key>
-                    <string>top</string>
-                    <key>னோ</key>
-                    <string>top</string>
-                    <key>னௌ</key>
-                    <string>top</string>
-                </dict>
+					<key>தௌ</key>
+					<string>top</string>
+					<key>நௌ</key>
+					<string>top</string>
+					<key>பௌ</key>
+					<string>top</string>
+					<key>மௌ</key>
+					<string>top</string>
+					<key>யௌ</key>
+					<string>top</string>
+					<key>ரௌ</key>
+					<string>top</string>
+					<key>லௌ</key>
+					<string>top</string>
+					<key>வௌ</key>
+					<string>top</string>
+					<key>ழௌ</key>
+					<string>top</string>
+					<key>ளோ</key>
+					<string>top</string>
+					<key>ளௌ</key>
+					<string>top</string>
+					<key>றௌ</key>
+					<string>top</string>
+					<key>னொ</key>
+					<string>top</string>
+					<key>னோ</key>
+					<string>top</string>
+					<key>னௌ</key>
+					<string>top</string>
+				</dict>
 			</array>
 		</dict>
 	</dict>

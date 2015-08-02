@@ -18,8 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIView     *colorPickerView;
 @property (weak, nonatomic) IBOutlet UIButton   *backButton;
 @property (weak, nonatomic) IBOutlet UIButton   *forwardButton;
-@property (weak, nonatomic) IBOutlet UIView     *menuPickerView;
-@property (weak, nonatomic) IBOutlet UIButton   *menuButton;
 @property (weak, nonatomic) IBOutlet UIButton   *menuButton1;
 @property (weak, nonatomic) IBOutlet UIButton   *menuButton2;
 @property (weak, nonatomic) IBOutlet UIButton   *menuButton3;
@@ -44,7 +42,6 @@
     [self setupMenuButtonItems];
 
     self.colorPickerView.hidden = YES;
-    self.menuPickerView.hidden = YES;
     self.backButton.hidden = YES;
     
     ///
@@ -156,8 +153,8 @@
 - (IBAction)colorLensButtonTapped:(id)sender
 {
     self.colorPickerView.hidden = NO;
-    self.menuPickerView.hidden = YES;
 }
+
 - (IBAction)colorButtonTapped:(id)sender
 {
     CustomRoundedButton *button = (CustomRoundedButton *)sender;
@@ -169,21 +166,6 @@
 - (IBAction)deleteButtonTapped:(id)sender
 {
     [self cleanUp];
-}
-
-- (IBAction)menuButtonTapped:(id)sender
-{
-    self.menuPickerView.hidden = NO;
-    self.colorPickerView.hidden = YES;
-    
-    CGRect orignalFrame = self.menuPickerView.frame;
-    CGRect modifiedFrame = self.menuPickerView.frame;
-    modifiedFrame.size = CGSizeZero;
-
-    self.menuPickerView.frame =  modifiedFrame;
-    [UIView animateWithDuration:0.25 animations:^{
-        self.menuPickerView.frame =  orignalFrame;
-    }];
 }
 
 - (IBAction)menuItemButtonTapped:(id)sender
@@ -218,7 +200,6 @@
 -(void)drawViewTapped
 {
     self.colorPickerView.hidden = YES;
-    self.menuPickerView.hidden = YES;
 }
 
 @end
