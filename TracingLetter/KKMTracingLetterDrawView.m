@@ -313,8 +313,8 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
 //}
 
 
-- (IBAction)animate:(id)sender
-{
+//- (IBAction)animate:(id)sender
+//{
 //    UIBezierPath* path0 = [UIBezierPath bezierPath];
 //    [path0 moveToPoint:CGPointZero];
 //    [path0 addLineToPoint:CGPointZero];
@@ -366,7 +366,7 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
 //    
 //    animation.values = [NSArray arrayWithObjects:(id)bPath0.CGPath, nil];
 //    [self.shapeLayer addAnimation:animation forKey:nil];
-}
+//}
 
 //void GetArrayPoints_CGPathApplierFunc(void *info, const CGPathElement *element) {
 //    NSMutableArray *array = (__bridge NSMutableArray *)info;
