@@ -19,8 +19,9 @@ typedef enum : NSUInteger {
     TouchLifeCycleStateTypeEnded
 } TouchLifeCycleStateTypeEnum;
 
-CGFloat const KKMiPadLineWidth = 30;
-CGFloat const KKMiPhoneLineWidth = 20;
+CGFloat const KKMiPadLineWidth = 30.0f;
+CGFloat const KKMiPhoneLineWidth = 20.0f;
+CGFloat const KKMPathCopyLineWidth = 30.0f;
 
 @interface KKMTracingLetterDrawView()
 
@@ -145,6 +146,8 @@ CGFloat const KKMiPhoneLineWidth = 20;
     CGContextSetLineWidth(context, 4);
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextStrokePath(context);
+    
+    //[self animate];
 }
 
 - (NSString *)presentationHint
@@ -159,7 +162,8 @@ CGFloat const KKMiPhoneLineWidth = 20;
 - (void)drawHandWritingLetter
 {
     [self.handWritingStrokeColor setStroke];
-    self.handWritingBezierPath.lineJoinStyle = kCGLineJoinRound;
+    [self.handWritingBezierPath setLineJoinStyle:kCGLineJoinRound];
+    [self.handWritingBezierPath setLineCapStyle:kCGLineCapButt];
     [self.handWritingBezierPath setLineWidth:self.handWritingLineWidth];
     [self.handWritingBezierPath stroke];
 }
@@ -231,7 +235,7 @@ CGFloat const KKMiPhoneLineWidth = 20;
     }
     else
     {
-        CGPathRef strokedPath = CGPathCreateCopyByStrokingPath(self.traceLetterBezierPath.CGPath, NULL, 20, kCGLineCapRound, kCGLineJoinRound, 1);
+        CGPathRef strokedPath = CGPathCreateCopyByStrokingPath(self.traceLetterBezierPath.CGPath, NULL, KKMPathCopyLineWidth, kCGLineCapRound, kCGLineJoinRound, 1);
         BOOL pointIsNearPath = CGPathContainsPoint(strokedPath, NULL, point, NO);
         CGPathRelease(strokedPath);
         return pointIsNearPath;
@@ -256,7 +260,28 @@ CGFloat const KKMiPhoneLineWidth = 20;
 
 
 
-
+- (void)animate
+{
+    CAShapeLayer *progressLayer = [[CAShapeLayer alloc] init];
+    
+    [progressLayer setPath: self.traceLetterBezierPath.CGPath];
+    
+    [progressLayer setStrokeColor:[UIColor redColor].CGColor];
+    [progressLayer setFillColor:[UIColor clearColor].CGColor];
+    [progressLayer setLineWidth:10];
+    [progressLayer setFillRule:kCAFillRuleEvenOdd];
+    
+    [progressLayer setStrokeStart:0.0];
+    [progressLayer setStrokeEnd:1.0];
+    [self.layer addSublayer:progressLayer];
+    
+    CABasicAnimation *animateStrokeEnd = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    animateStrokeEnd = [CABasicAnimation animation];
+    animateStrokeEnd.duration  = 5;
+    animateStrokeEnd.fromValue = [NSNumber numberWithFloat:0.0f];
+    animateStrokeEnd.toValue   = [NSNumber numberWithFloat:1.0f];
+    [progressLayer addAnimation:animateStrokeEnd forKey:nil];
+}
 
 
 
@@ -343,27 +368,27 @@ CGFloat const KKMiPhoneLineWidth = 20;
 //    [self.shapeLayer addAnimation:animation forKey:nil];
 }
 
-void GetArrayPoints_CGPathApplierFunc(void *info, const CGPathElement *element) {
-    NSMutableArray *array = (__bridge NSMutableArray *)info;
-//    if (element->type == kCGPathElementMoveToPoint || element->type == kCGPathElementAddLineToPoint)
-    {
-        //printf("The value is %d\n", element->type);
-        CGPoint point = element->points[0];
-        [array addObject:[NSValue valueWithCGPoint:point]];
-    }
-}
-
-void GetArrayPoints_CGPathApplierFunc1(void *info, const CGPathElement *element) {
-    NSMutableArray *array = (__bridge NSMutableArray *)info;
-    //if (element->type == kCGPathElementMoveToPoint || element->type == kCGPathElementAddLineToPoint)
-    {
-//        printf("The value is %d\n", element->type);
-        int theInt = element->type;
-        const void *myVal = &theInt;
-        NSValue *valObj = [NSValue value:myVal withObjCType:@encode(int*)];
-        [array addObject:valObj];
-    }
-}
+//void GetArrayPoints_CGPathApplierFunc(void *info, const CGPathElement *element) {
+//    NSMutableArray *array = (__bridge NSMutableArray *)info;
+////    if (element->type == kCGPathElementMoveToPoint || element->type == kCGPathElementAddLineToPoint)
+//    {
+//        //printf("The value is %d\n", element->type);
+//        CGPoint point = element->points[0];
+//        [array addObject:[NSValue valueWithCGPoint:point]];
+//    }
+//}
+//
+//void GetArrayPoints_CGPathApplierFunc1(void *info, const CGPathElement *element) {
+//    NSMutableArray *array = (__bridge NSMutableArray *)info;
+//    //if (element->type == kCGPathElementMoveToPoint || element->type == kCGPathElementAddLineToPoint)
+//    {
+////        printf("The value is %d\n", element->type);
+//        int theInt = element->type;
+//        const void *myVal = &theInt;
+//        NSValue *valObj = [NSValue value:myVal withObjCType:@encode(int*)];
+//        [array addObject:valObj];
+//    }
+//}
 
 
 
