@@ -41,6 +41,8 @@
     }
     
     UIBezierPath *path = [UIBezierPath bezierPathWithCGPath:letters];
+    [path applyTransform:CGAffineTransformMakeScale(1.0, -1.0)];
+
     CGPathRelease(letters);
     CFRelease(line);    
     return path;

@@ -159,6 +159,7 @@
 {
     CustomRoundedButton *button = (CustomRoundedButton *)sender;
     UIColor *color = button.backgroundColor;
+    [self cleanUp];
     [self drawView].handWritingStrokeColor = color;
     self.colorPickerView.hidden = YES;
 }

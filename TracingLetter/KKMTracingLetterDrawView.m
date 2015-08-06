@@ -91,30 +91,33 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
 
 - (void)drawTracingLetter
 {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    NSString *string = self.letterString;
     UIFont *font = [UIFont fontWithName:self.fontNameString size:self.fontSize];
+    self.traceLetterBezierPath = [self.letterString bezierPathWithFont:font bounds:self.bounds];
+    [self calculateBoundingBoxPosition];
+    [self calculateBoundingBoxScale];
+   
+    [[UIColor yellowColor] setStroke];
+    [self.traceLetterBezierPath setLineJoinStyle:kCGLineJoinRound];
+    [self.traceLetterBezierPath setLineCapStyle:kCGLineCapButt];
+    [self.traceLetterBezierPath setLineWidth:4];
+    [self.traceLetterBezierPath stroke];
+}
 
-    self.traceLetterBezierPath = [string bezierPathWithFont:font bounds:self.bounds];
-    // The path is upside down (CG coordinate system)
+- (void)calculateBoundingBoxPosition
+{
     CGRect boundingBox = CGPathGetBoundingBox(self.traceLetterBezierPath.CGPath);
-    [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeScale(1.0, -1.0)];
-    
-    NSLog(@"%@", self.letterString);
-    NSLog(@"self.bounds.width = %f; self.bounds.height = %f", self.bounds.size.width, self.bounds.size.height);
-    NSLog(@"boundingBox.width = %f; boundingBox.height = %f", boundingBox.size.width, boundingBox.size.height);
     CGFloat x = (self.bounds.size.width - boundingBox.size.width) / 2;
     if (x < 0)
         x = 0;
     
     CGFloat y = 0;
-
+    
     NSString *hint = [self presentationHint];
-
+    
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         y = self.bounds.size.height / 1.5;
-
+        
         if ([hint isEqualToString:@"top"])
             y = (self.bounds.size.height) / 1.15;
     }
@@ -127,8 +130,14 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
         else
             y = (self.bounds.size.height) / 1.5;
     }
+    
     [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeTranslation(x, y)];
+}
 
+- (void)calculateBoundingBoxScale
+{
+    CGRect boundingBox = CGPathGetBoundingBox(self.traceLetterBezierPath.CGPath);
+    
     CGFloat buffer = 50.0f;
     if(boundingBox.size.height + buffer > self.bounds.size.height)
     {
@@ -139,15 +148,7 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
     {
         CGFloat scale = (self.bounds.size.width / boundingBox.size.width) - 0.05;
         [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeScale(scale, scale)];
-    }    
-   
-    CGContextAddPath(context, self.traceLetterBezierPath.CGPath);
-    CGContextSetStrokeColorWithColor(context,[UIColor yellowColor].CGColor);
-    CGContextSetLineWidth(context, 4);
-    CGContextSetLineCap(context, kCGLineCapRound);
-    CGContextStrokePath(context);
-    
-    //[self animate];
+    }
 }
 
 - (NSString *)presentationHint
@@ -256,140 +257,5 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
     self.handWritingBezierPath = [UIBezierPath bezierPath];
     [self setNeedsDisplay];
 }
-
-
-
-
-- (void)animate
-{
-    CAShapeLayer *progressLayer = [[CAShapeLayer alloc] init];
-    
-    [progressLayer setPath: self.traceLetterBezierPath.CGPath];
-    
-    [progressLayer setStrokeColor:[UIColor redColor].CGColor];
-    [progressLayer setFillColor:[UIColor clearColor].CGColor];
-    [progressLayer setLineWidth:10];
-    [progressLayer setFillRule:kCAFillRuleEvenOdd];
-    
-    [progressLayer setStrokeStart:0.0];
-    [progressLayer setStrokeEnd:1.0];
-    [self.layer addSublayer:progressLayer];
-    
-    CABasicAnimation *animateStrokeEnd = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    animateStrokeEnd = [CABasicAnimation animation];
-    animateStrokeEnd.duration  = 5;
-    animateStrokeEnd.fromValue = [NSNumber numberWithFloat:0.0f];
-    animateStrokeEnd.toValue   = [NSNumber numberWithFloat:1.0f];
-    [progressLayer addAnimation:animateStrokeEnd forKey:nil];
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//- (void)layoutSubviews
-//{
-//    if (!self.shapeLayer)
-//    {
-//        self.shapeLayer = [[CAShapeLayer alloc] init];
-//        self.shapeLayer.bounds = CGRectMake(0, 0, 200, 200);     // layer is 100x100 in size
-//        self.shapeLayer.position = self.center;                  // and is centered in the view
-//        self.shapeLayer.strokeColor = [UIColor blueColor].CGColor;
-//        self.shapeLayer.fillColor = [UIColor redColor].CGColor;
-//        self.shapeLayer.lineWidth = 3.f;
-//        self.shapeLayer.backgroundColor = [UIColor whiteColor].CGColor;
-//        
-//        //[self.layer addSublayer:self.shapeLayer];
-//    }
-//}
-
-
-//- (IBAction)animate:(id)sender
-//{
-//    UIBezierPath* path0 = [UIBezierPath bezierPath];
-//    [path0 moveToPoint:CGPointZero];
-//    [path0 addLineToPoint:CGPointZero];
-//    [path0 addLineToPoint:CGPointZero];
-//    [path0 addLineToPoint:CGPointZero];
-//    
-//    UIBezierPath* path1 = [UIBezierPath bezierPath];
-//    [path1 moveToPoint:CGPointZero];
-//    [path1 addLineToPoint:CGPointMake(50,100)];
-//    [path1 addLineToPoint:CGPointMake(50,100)];
-//    [path1 addLineToPoint:CGPointMake(50,100)];
-//    
-//    UIBezierPath* path2 = [UIBezierPath bezierPath];
-//    [path2 moveToPoint:CGPointZero];
-//    [path2 addLineToPoint:CGPointMake(50,100)];
-//    [path2 addLineToPoint:CGPointMake(100,0)];
-//    [path2 addLineToPoint:CGPointMake(100,0)];
-//    
-//    UIBezierPath* path3 = [UIBezierPath bezierPath];
-//    [path3 moveToPoint:CGPointZero];
-//    [path3 addLineToPoint:CGPointMake(50,100)];
-//    [path3 addLineToPoint:CGPointMake(100,0)];
-//    [path3 addLineToPoint:CGPointZero];
-    
-//    CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-//    animation.duration = 10.0f;
-////    animation.values = [NSArray arrayWithObjects:(id)path0.CGPath, (id)path1.CGPath, (id)path2.CGPath, (id)path3.CGPath, nil];
-//    CGPathRef pathRef = self.traceLetterBezierPath.CGPath;
-//    NSMutableArray *bezierPoints = [NSMutableArray array];
-//    NSMutableArray *bezierPathElementType = [NSMutableArray array];
-//    CGPathApply(pathRef, (__bridge void *)(bezierPoints), &GetArrayPoints_CGPathApplierFunc);
-//    CGPathApply(pathRef, (__bridge void *)(bezierPathElementType), &GetArrayPoints_CGPathApplierFunc1);
-//    
-//    UIBezierPath *bPath0 = [UIBezierPath bezierPath];
-//    [bPath0 moveToPoint:CGPointZero];
-//
-//    UIBezierPath *bPath1 = [UIBezierPath bezierPath];
-//    [bPath1 moveToPoint:CGPointZero];
-//
-//    for (NSInteger i = 0; i < bezierPoints.count; i++)
-//    {
-//        NSValue *pointValue = (NSValue *)bezierPoints[i];
-//        [bPath0 addLineToPoint:pointValue.CGPointValue];
-//        
-//        NSValue *elementTypeValue = (NSValue *)bezierPathElementType[i];
-//        int elementTypeIntValue = -1;
-//        [elementTypeValue getValue:&elementTypeIntValue];
-//    }
-//    
-//    animation.values = [NSArray arrayWithObjects:(id)bPath0.CGPath, nil];
-//    [self.shapeLayer addAnimation:animation forKey:nil];
-//}
-
-//void GetArrayPoints_CGPathApplierFunc(void *info, const CGPathElement *element) {
-//    NSMutableArray *array = (__bridge NSMutableArray *)info;
-////    if (element->type == kCGPathElementMoveToPoint || element->type == kCGPathElementAddLineToPoint)
-//    {
-//        //printf("The value is %d\n", element->type);
-//        CGPoint point = element->points[0];
-//        [array addObject:[NSValue valueWithCGPoint:point]];
-//    }
-//}
-//
-//void GetArrayPoints_CGPathApplierFunc1(void *info, const CGPathElement *element) {
-//    NSMutableArray *array = (__bridge NSMutableArray *)info;
-//    //if (element->type == kCGPathElementMoveToPoint || element->type == kCGPathElementAddLineToPoint)
-//    {
-////        printf("The value is %d\n", element->type);
-//        int theInt = element->type;
-//        const void *myVal = &theInt;
-//        NSValue *valObj = [NSValue value:myVal withObjCType:@encode(int*)];
-//        [array addObject:valObj];
-//    }
-//}
-
-
 
 @end
