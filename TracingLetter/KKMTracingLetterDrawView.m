@@ -92,6 +92,7 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
 - (void)drawTracingLetter
 {
     UIFont *font = [UIFont fontWithName:self.fontNameString size:self.fontSize];
+    NSLog(@"%@", self.letterString);
     self.traceLetterBezierPath = [self.letterString bezierPathWithFont:font bounds:self.bounds];
     [self calculateBoundingBoxPosition];
     [self calculateBoundingBoxScale];
@@ -99,7 +100,7 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
     [[UIColor yellowColor] setStroke];
     [self.traceLetterBezierPath setLineJoinStyle:kCGLineJoinRound];
     [self.traceLetterBezierPath setLineCapStyle:kCGLineCapButt];
-    [self.traceLetterBezierPath setLineWidth:4];
+    [self.traceLetterBezierPath setLineWidth:3];
     [self.traceLetterBezierPath stroke];
 }
 

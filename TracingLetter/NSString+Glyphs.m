@@ -13,7 +13,7 @@
 
 - (UIBezierPath *)bezierPathWithFont:(UIFont*)font bounds:(CGRect)bounds
 {
-    CTFontRef ctFont = CTFontCreateWithName((__bridge CFStringRef)font.familyName, font.pointSize, NULL);
+    CTFontRef ctFont = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, NULL);
     NSAttributedString *attributed = [[NSAttributedString alloc] initWithString:self attributes:[NSDictionary dictionaryWithObject:(__bridge id)ctFont forKey:(__bridge NSString*)kCTFontAttributeName]];
     CFRelease(ctFont);
     

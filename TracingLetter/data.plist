@@ -7,7 +7,7 @@
 		<key>title</key>
 		<string>தமிழ்</string>
 		<key>fontName</key>
-		<string>TamilSangamMN-Bold</string>
+		<string>TamilSangamMN</string>
 		<key>button1</key>
 		<dict>
 			<key>name</key>
@@ -346,12 +346,6 @@
 					<string>top</string>
 					<key>சௌ</key>
 					<string>top</string>
-					<key>ஞொ</key>
-					<string>top</string>
-					<key>ஞோ</key>
-					<string>top</string>
-					<key>ஞௌ</key>
-					<string>top</string>
 					<key>ணொ</key>
 					<string>top</string>
 					<key>ணோ</key>
@@ -390,33 +384,47 @@
 					<string>top</string>
 					<key>னௌ</key>
 					<string>top</string>
+					<key>சி</key>
+					<string>top-iphone</string>
+					<key>சீ</key>
+					<string>top-iphone</string>
+					<key>செ</key>
+					<string>top-iphone</string>
+					<key>சே</key>
+					<string>top-iphone</string>
+					<key>சொ</key>
+					<string>top-iphone</string>
+					<key>சோ</key>
+					<string>top-iphone</string>
+					<key>ஞி</key>
+					<string>top-iphone</string>
+					<key>ஞீ</key>
+					<string>top-iphone</string>
+					<key>ஞெ</key>
+					<string>top-iphone</string>
+					<key>ஞே</key>
+					<string>top-iphone</string>
+					<key>ஞொ</key>
+					<string>top-iphone</string>
+					<key>ஞோ</key>
+					<string>top-iphone</string>
+					<key>ஞௌ</key>
+					<string>top-iphone</string>
+					<key>டு</key>
+					<string>top-iphone</string>
+					<key>டூ</key>
+					<string>top-iphone</string>
+					<key>டெ</key>
+					<string>top-iphone</string>
+					<key>டே</key>
+					<string>top-iphone</string>
+					<key>டொ</key>
+					<string>top-iphone</string>
+					<key>டோ</key>
+					<string>top-iphone</string>
 				</dict>
 			</array>
 		</dict>
 	</dict>
-	<key>telugu</key>
-	<dict>
-		<key>title</key>
-		<string>Telugu</string>
-		<key>fontName</key>
-		<string>TeluguSangamMN-Bold</string>
-		<key>button1</key>
-		<dict>
-			<key>name</key>
-			<string>(Consonants)</string>
-			<key>values</key>
-			<array>
-				<array>
-					<string>అ</string>
-					<string>ఆ</string>
-					<string>ఇ</string>
-				</array>
-				<array/>
-				<dict/>
-			</array>
-		</dict>
-	</dict>
-	<key>malayalam</key>
-	<dict/>
 </dict>
 </plist>
