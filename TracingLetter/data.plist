@@ -42,10 +42,7 @@
 					<string>ஓடம்</string>
 					<string>ஒளவை</string>
 				</array>
-				<dict>
-					<key>இ</key>
-					<string>top</string>
-				</dict>
+				<dict/>
 			</array>
 		</dict>
 		<key>button2</key>
@@ -75,22 +72,7 @@
 					<string>ன்</string>
 				</array>
 				<array/>
-				<dict>
-					<key>all</key>
-					<string>top</string>
-					<key>ஞ்</key>
-					<string>bottom</string>
-					<key>த்</key>
-					<string>bottom</string>
-					<key>ந்</key>
-					<string>bottom</string>
-					<key>ர்</key>
-					<string>bottom</string>
-					<key>ழ்</key>
-					<string>bottom</string>
-					<key>ற்</key>
-					<string>bottom</string>
-				</dict>
+				<dict/>
 			</array>
 		</dict>
 		<key>button3</key>
@@ -320,28 +302,22 @@
 				<dict>
 					<key>கௌ</key>
 					<string>top</string>
-					<key>கி</key>
-					<string>top-iphone</string>
-					<key>கீ</key>
-					<string>top-iphone</string>
-					<key>கெ</key>
-					<string>top-iphone</string>
-					<key>கே</key>
-					<string>top-iphone</string>
-					<key>கொ</key>
-					<string>top-iphone</string>
-					<key>ஙி</key>
-					<string>top-iphone</string>
-					<key>ஙீ</key>
-					<string>top-iphone</string>
-					<key>ஙெ</key>
-					<string>top-iphone</string>
-					<key>ஙே</key>
-					<string>top-iphone</string>
+					<key>டொ</key>
+					<string>top</string>
 					<key>ஙொ</key>
-					<string>top-iphone</string>
-					<key>ஙோ</key>
-					<string>top-iphone</string>
+					<string>top</string>
+					<key>வொ</key>
+					<string>top</string>
+					<key>ளோ</key>
+					<string>top</string>
+					<key>லொ</key>
+					<string>top</string>
+					<key>ளொ</key>
+					<string>top</string>
+					<key>னொ</key>
+					<string>top</string>
+					<key>னோ</key>
+					<string>top</string>
 					<key>ஙௌ</key>
 					<string>top</string>
 					<key>சௌ</key>
@@ -372,56 +348,18 @@
 					<string>top</string>
 					<key>ழௌ</key>
 					<string>top</string>
-					<key>ளோ</key>
-					<string>top</string>
 					<key>ளௌ</key>
 					<string>top</string>
 					<key>றௌ</key>
 					<string>top</string>
-					<key>னொ</key>
-					<string>top</string>
-					<key>னோ</key>
-					<string>top</string>
 					<key>னௌ</key>
 					<string>top</string>
-					<key>சி</key>
-					<string>top-iphone</string>
-					<key>சீ</key>
-					<string>top-iphone</string>
-					<key>செ</key>
-					<string>top-iphone</string>
-					<key>சே</key>
-					<string>top-iphone</string>
-					<key>சொ</key>
-					<string>top-iphone</string>
-					<key>சோ</key>
-					<string>top-iphone</string>
-					<key>ஞி</key>
-					<string>top-iphone</string>
-					<key>ஞீ</key>
-					<string>top-iphone</string>
-					<key>ஞெ</key>
-					<string>top-iphone</string>
-					<key>ஞே</key>
-					<string>top-iphone</string>
 					<key>ஞொ</key>
-					<string>top-iphone</string>
+					<string>top</string>
 					<key>ஞோ</key>
-					<string>top-iphone</string>
+					<string>top</string>
 					<key>ஞௌ</key>
-					<string>top-iphone</string>
-					<key>டு</key>
-					<string>top-iphone</string>
-					<key>டூ</key>
-					<string>top-iphone</string>
-					<key>டெ</key>
-					<string>top-iphone</string>
-					<key>டே</key>
-					<string>top-iphone</string>
-					<key>டொ</key>
-					<string>top-iphone</string>
-					<key>டோ</key>
-					<string>top-iphone</string>
+					<string>top</string>
 				</dict>
 			</array>
 		</dict>

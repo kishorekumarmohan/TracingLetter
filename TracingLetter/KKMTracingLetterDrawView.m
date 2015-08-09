@@ -20,7 +20,6 @@ typedef enum : NSUInteger {
 } TouchLifeCycleStateTypeEnum;
 
 CGFloat const KKMiPadLineWidth = 30.0f;
-CGFloat const KKMiPhoneLineWidth = 20.0f;
 CGFloat const KKMPathCopyLineWidth = 30.0f;
 
 @interface KKMTracingLetterDrawView()
@@ -71,22 +70,8 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
 
 - (void)fontSizeAndLineWidth
 {
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        self.fontSize = 550.f;
-        self.handWritingLineWidth = KKMiPadLineWidth;
-    }
-    else
-    {
-        if ([DeviceUtil hardware] == IPHONE_4S)
-            self.fontSize = 290.0f;
-        else if([DeviceUtil hardware] == IPHONE_5 || [DeviceUtil hardware] == IPHONE_5S)
-            self.fontSize = 320.0f;
-        else
-            self.fontSize = 380.0f;
-        
-        self.handWritingLineWidth = KKMiPhoneLineWidth;
-    }
+    self.fontSize = 550.f;
+    self.handWritingLineWidth = KKMiPadLineWidth;
 }
 
 - (void)drawTracingLetter
@@ -113,25 +98,11 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
     if (x < 0)
         x = 0;
     
-    CGFloat y = 0;
-    
+    CGFloat y = self.bounds.size.height / 1.5;
     NSString *hint = [self presentationHint];
-    
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    if ([hint isEqualToString:@"top"])
     {
-        y = self.bounds.size.height / 1.5;
-        
-        if ([hint isEqualToString:@"top"])
-            y = (self.bounds.size.height) / 1.15;
-    }
-    else
-    {
-        if ([hint isEqualToString:@"top"] || [hint isEqualToString:@"top-iphone"])
-            y = (self.bounds.size.height) / 1.15;
-        else if ([hint isEqualToString:@"bottom"])
-            y = (self.bounds.size.height) / 1.25;
-        else
-            y = (self.bounds.size.height) / 1.5;
+        y = y * 1.3;
     }
     
     [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeTranslation(x, y)];
@@ -154,15 +125,6 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
     }
 }
 
-- (NSString *)presentationHint
-{
-    NSString *hint = self.dataDict[KKMValues][2][self.letterString];
-    if (hint == nil)
-        hint = self.dataDict[KKMValues][2][KKMAll];
-
-    return hint;
-}
-
 - (void)drawHandWritingLetter
 {
     [self.handWritingStrokeColor setStroke];
@@ -170,6 +132,12 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
     [self.handWritingBezierPath setLineCapStyle:kCGLineCapButt];
     [self.handWritingBezierPath setLineWidth:self.handWritingLineWidth];
     [self.handWritingBezierPath stroke];
+}
+
+- (NSString *)presentationHint
+{
+    NSString *hint = self.dataDict[KKMValues][2][self.letterString];
+    return hint;
 }
 
 #pragma mark - Touch
