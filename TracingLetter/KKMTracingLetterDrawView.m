@@ -101,6 +101,8 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
     [self.traceLetterBezierPath setLineJoinStyle:kCGLineJoinRound];
     [self.traceLetterBezierPath setLineCapStyle:kCGLineCapButt];
     [self.traceLetterBezierPath setLineWidth:3];
+    CGFloat dashes[] = {6, 2};
+    [self.traceLetterBezierPath setLineDash:dashes count:2 phase:0];
     [self.traceLetterBezierPath stroke];
 }
 
