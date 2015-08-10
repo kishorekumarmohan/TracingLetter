@@ -43,15 +43,6 @@
 
     self.colorPickerView.hidden = YES;
     self.backButton.hidden = YES;
-    
-    ///
-//    NSArray *fontFamilies = [UIFont familyNames];
-//    for (int i = 0; i < [fontFamilies count]; i++)
-//    {
-//        NSString *fontFamily = [fontFamilies objectAtIndex:i];
-//        NSArray *fontNames = [UIFont fontNamesForFamilyName:[fontFamilies objectAtIndex:i]];
-//        NSLog (@"%@: %@", fontFamily, fontNames);
-//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -91,6 +82,8 @@
 
 - (void)setupMenuButtonItems
 {
+    [self.menuButton1 setTitleColor:[UIColor yellowColor] forState: UIControlStateNormal];
+
     [self.menuButton1 setTitle:self.languageDataDict[KKMButton1][KKMName] forState:UIControlStateNormal];
     [self.menuButton2 setTitle:self.languageDataDict[KKMButton2][KKMName] forState:UIControlStateNormal];
     [self.menuButton3 setTitle:self.languageDataDict[KKMButton3][KKMName] forState:UIControlStateNormal];
@@ -171,6 +164,7 @@
 
 - (IBAction)menuItemButtonTapped:(id)sender
 {
+    [self resetMenuButtonColor];
     CustomRoundedButton *button = (CustomRoundedButton *)sender;
     if(button.tag == 0)
         self.dataDict = self.languageDataDict[KKMButton1];
@@ -179,8 +173,17 @@
     else if (button.tag == 2)
         self.dataDict = self.languageDataDict[KKMButton3];
     
+    [button setTitleColor:[UIColor yellowColor] forState: UIControlStateNormal];
+    
     [self refreshView:nil];
     [[self drawView] setNeedsDisplay];
+}
+
+- (void)resetMenuButtonColor
+{
+    [self.menuButton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.menuButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.menuButton3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
 #pragma mark - helper

@@ -77,7 +77,7 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
 - (void)drawTracingLetter
 {
     UIFont *font = [UIFont fontWithName:self.fontNameString size:self.fontSize];
-    NSLog(@"%@", self.letterString);
+    //NSLog(@"%@", self.letterString);
     self.traceLetterBezierPath = [self.letterString bezierPathWithFont:font bounds:self.bounds];
     [self calculateBoundingBoxPosition];
     [self calculateBoundingBoxScale];
