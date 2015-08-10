@@ -19,8 +19,7 @@ typedef enum : NSUInteger {
     TouchLifeCycleStateTypeEnded
 } TouchLifeCycleStateTypeEnum;
 
-CGFloat const KKMiPadLineWidth = 30.0f;
-CGFloat const KKMPathCopyLineWidth = 30.0f;
+CGFloat const KKMiPadLineWidth = 25.0f;
 
 @interface KKMTracingLetterDrawView()
 
@@ -212,22 +211,7 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
 
 - (BOOL)touchedInsideTracingArea:(CGPoint)point withTouchLifeCycleStateTypeEnum:(TouchLifeCycleStateTypeEnum)type
 {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        return [self.traceLetterBezierPath containsPoint:point];
-    }
-    
-    if (type == TouchLifeCycleStateTypeBegin)
-    {
-        return [self.traceLetterBezierPath containsPoint:point];
-    }
-    else
-    {
-        CGPathRef strokedPath = CGPathCreateCopyByStrokingPath(self.traceLetterBezierPath.CGPath, NULL, KKMPathCopyLineWidth, kCGLineCapRound, kCGLineJoinRound, 1);
-        BOOL pointIsNearPath = CGPathContainsPoint(strokedPath, NULL, point, NO);
-        CGPathRelease(strokedPath);
-        return pointIsNearPath;
-    }
+    return [self.traceLetterBezierPath containsPoint:point];
 }
 
 #pragma mark - Motion

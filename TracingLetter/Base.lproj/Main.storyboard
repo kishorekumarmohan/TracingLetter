@@ -118,7 +118,7 @@
                                     <action selector="menuItemButtonTapped:" destination="QTR-L6-mWq" eventType="touchUpInside" id="MdO-iA-TFM"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGA-9i-uZ8" customClass="CustomRoundedView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGA-9i-uZ8">
                                 <rect key="frame" x="175" y="54" width="232" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjO-oc-Uct" customClass="CustomRoundedButton">
