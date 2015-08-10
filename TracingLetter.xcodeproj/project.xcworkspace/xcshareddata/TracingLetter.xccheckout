@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>B5947A50-8DF3-40B2-8D99-604E829D04C9</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>TracingLetter</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>B1635A191BD4EE09F461C7FC25EA14282A69A292</key>
 		<string>https://github.com/kishorekumarmohan/TracingLetter.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>TracingLetter.xcodeproj/project.xcworkspace</string>
+	<string>TracingLetter.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>B1635A191BD4EE09F461C7FC25EA14282A69A292</key>

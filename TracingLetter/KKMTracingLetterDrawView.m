@@ -70,7 +70,7 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
 
 - (void)fontSizeAndLineWidth
 {
-    self.fontSize = 550.f;
+    self.fontSize = 600.f;
     self.handWritingLineWidth = KKMiPadLineWidth;
 }
 
@@ -102,8 +102,18 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
     NSString *hint = [self presentationHint];
     if ([hint isEqualToString:@"top"])
     {
-        y = y * 1.3;
+        y = y * 1.4;
     }
+    else if ([hint isEqualToString:@"top1"])
+    {
+        y = y * 1.2;
+    }
+    else if ([hint isEqualToString:@"top2"])
+    {
+        y = y * 1.1;
+    }
+
+    
     
     [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeTranslation(x, y)];
 }
@@ -113,14 +123,17 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
     CGRect boundingBox = CGPathGetBoundingBox(self.traceLetterBezierPath.CGPath);
     
     CGFloat buffer = 50.0f;
+    CGFloat scale = 0.0f;
+    
     if(boundingBox.size.height + buffer > self.bounds.size.height)
-    {
-        CGFloat scale = self.bounds.size.height / (boundingBox.size.height + buffer);
-        [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeScale(scale, scale)];
-    }
+        scale = self.bounds.size.height / (boundingBox.size.height + buffer);
     else if(boundingBox.size.width + buffer > self.bounds.size.width)
+        scale = (self.bounds.size.width / boundingBox.size.width) - 0.05;
+    
+    
+    if (scale > 0)
     {
-        CGFloat scale = (self.bounds.size.width / boundingBox.size.width) - 0.05;
+        self.handWritingLineWidth = KKMiPadLineWidth * scale;
         [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeScale(scale, scale)];
     }
 }
@@ -137,6 +150,9 @@ CGFloat const KKMPathCopyLineWidth = 30.0f;
 - (NSString *)presentationHint
 {
     NSString *hint = self.dataDict[KKMValues][2][self.letterString];
+    if (hint == nil)
+        hint = self.dataDict[KKMValues][2][KKMAll];
+    
     return hint;
 }
 
