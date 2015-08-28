@@ -112,12 +112,6 @@ CGFloat const KKMPhoneBoundingBoxbuffer = 30.0f;
     CGFloat y = self.bounds.size.height / 1.5;
     NSString *hint = [self presentationHint];
     
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-        if ([hint isEqualToString:@"top"])
-            hint = @"top1";
-    }
-    
     CGFloat factor = 1.0f;
     
     if ([hint isEqualToString:@"top"])
@@ -134,15 +128,7 @@ CGFloat const KKMPhoneBoundingBoxbuffer = 30.0f;
 
 - (void)calculateBoundingBoxScale
 {
-    CGRect boundingBox = CGPathGetBoundingBox(self.traceLetterBezierPath.CGPath);
-    
-    CGFloat buffer = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) ? KKMPhoneBoundingBoxbuffer : KKMPadBoundingBoxbuffer;
-    CGFloat scale = 0.0f;
-    
-    if(boundingBox.size.height + buffer > self.bounds.size.height)
-        scale = self.bounds.size.height / (boundingBox.size.height + buffer);
-    else if(boundingBox.size.width + buffer > self.bounds.size.width)
-        scale = (self.bounds.size.width / boundingBox.size.width) - 0.05;
+    CGFloat scale = [self calculateScale];
     
     if (scale > 0)
     {
@@ -153,6 +139,22 @@ CGFloat const KKMPhoneBoundingBoxbuffer = 30.0f;
         
         [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeScale(scale, scale)];
     }
+}
+
+- (CGFloat)calculateScale
+{
+    CGRect boundingBox = CGPathGetBoundingBox(self.traceLetterBezierPath.CGPath);
+    
+    CGFloat buffer = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) ? KKMPhoneBoundingBoxbuffer : KKMPadBoundingBoxbuffer;
+    CGFloat scale = 0.0f;
+    
+    if(boundingBox.size.height + buffer > self.bounds.size.height)
+        scale = self.bounds.size.height / (boundingBox.size.height + buffer);
+    
+    if(boundingBox.size.width + buffer > self.bounds.size.width)
+        scale = (self.bounds.size.width / boundingBox.size.width) - 0.05;
+    
+    return scale;
 }
 
 - (void)drawHandWritingLetter
