@@ -20,6 +20,7 @@ typedef enum : NSUInteger {
 } TouchLifeCycleStateTypeEnum;
 
 CGFloat const KKMiPadLineWidth = 25.0f;
+CGFloat const KKMiPhoneLineWidth = 15.0f;
 
 @interface KKMTracingLetterDrawView()
 
@@ -69,8 +70,16 @@ CGFloat const KKMiPadLineWidth = 25.0f;
 
 - (void)fontSizeAndLineWidth
 {
-    self.fontSize = 600.f;
-    self.handWritingLineWidth = KKMiPadLineWidth;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        self.fontSize = 600.f;
+        self.handWritingLineWidth = KKMiPadLineWidth;
+    }
+    else
+    {
+        self.fontSize = 300.f;
+        self.handWritingLineWidth = KKMiPhoneLineWidth;
+    }
 }
 
 - (void)drawTracingLetter
@@ -111,8 +120,6 @@ CGFloat const KKMiPadLineWidth = 25.0f;
     {
         y = y * 1.1;
     }
-
-    
     
     [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeTranslation(x, y)];
 }
@@ -132,7 +139,11 @@ CGFloat const KKMiPadLineWidth = 25.0f;
     
     if (scale > 0)
     {
-        self.handWritingLineWidth = KKMiPadLineWidth * scale;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+            self.handWritingLineWidth = KKMiPadLineWidth * scale;
+        else
+            self.handWritingLineWidth = KKMiPhoneLineWidth * scale;
+        
         [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeScale(scale, scale)];
     }
 }

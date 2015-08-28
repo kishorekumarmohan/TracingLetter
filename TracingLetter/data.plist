@@ -77,24 +77,27 @@
 				<array>
 					<string>சக்கரம்</string>
 					<string>சங்கு</string>
-                    <string>பச்சை</string>
-                    <string>அஞ்சல்</string>
-                    <string>ஒட்டகம்</string>
-                    <string>கண்</string>
-                    <string>தத்தை</string>
-                    <string>பந்து</string>
-                    <string>கப்பல்</string>
-                    <string>அம்பு</string>
-                    <string>நாய்</string>
-                    <string>மலர்</string>
-                    <string>கால்</string>
-                    <string>செவ்வகம்</string>
-                    <string>இதழ்</string>
-                    <string>மஞ்சள்</string>
-                    <string>ஒற்றுமை</string>
-                    <string>ஒன்று</string>
+					<string>பச்சை</string>
+					<string>அஞ்சல்</string>
+					<string>ஒட்டகம்</string>
+					<string>கண்</string>
+					<string>தத்தை</string>
+					<string>பந்து</string>
+					<string>கப்பல்</string>
+					<string>அம்பு</string>
+					<string>நாய்</string>
+					<string>மலர்</string>
+					<string>கால்</string>
+					<string>செவ்வகம்</string>
+					<string>இதழ்</string>
+					<string>மஞ்சள்</string>
+					<string>ஒற்றுமை</string>
+					<string>ஒன்று</string>
 				</array>
-				<dict/>
+				<dict>
+					<key>all</key>
+					<string>top2</string>
+				</dict>
 			</array>
 		</dict>
 		<key>button3</key>
