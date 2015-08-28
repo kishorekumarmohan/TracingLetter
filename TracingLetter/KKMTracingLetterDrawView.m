@@ -22,6 +22,9 @@ typedef enum : NSUInteger {
 CGFloat const KKMiPadLineWidth = 25.0f;
 CGFloat const KKMiPhoneLineWidth = 15.0f;
 
+CGFloat const KKMPadBoundingBoxbuffer = 50.0f;
+CGFloat const KKMPhoneBoundingBoxbuffer = 30.0f;
+
 @interface KKMTracingLetterDrawView()
 
 @property (nonatomic, strong) UIBezierPath  *traceLetterBezierPath;
@@ -108,18 +111,23 @@ CGFloat const KKMiPhoneLineWidth = 15.0f;
     
     CGFloat y = self.bounds.size.height / 1.5;
     NSString *hint = [self presentationHint];
+    
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        if ([hint isEqualToString:@"top"])
+            hint = @"top1";
+    }
+    
+    CGFloat factor = 1.0f;
+    
     if ([hint isEqualToString:@"top"])
-    {
-        y = y * 1.4;
-    }
+        factor = 1.4f;
     else if ([hint isEqualToString:@"top1"])
-    {
-        y = y * 1.2;
-    }
+        factor = 1.2f;
     else if ([hint isEqualToString:@"top2"])
-    {
-        y = y * 1.1;
-    }
+        factor = 1.1f;
+    
+    y = y * factor;
     
     [self.traceLetterBezierPath applyTransform:CGAffineTransformMakeTranslation(x, y)];
 }
@@ -128,14 +136,13 @@ CGFloat const KKMiPhoneLineWidth = 15.0f;
 {
     CGRect boundingBox = CGPathGetBoundingBox(self.traceLetterBezierPath.CGPath);
     
-    CGFloat buffer = 50.0f;
+    CGFloat buffer = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) ? KKMPhoneBoundingBoxbuffer : KKMPadBoundingBoxbuffer;
     CGFloat scale = 0.0f;
     
     if(boundingBox.size.height + buffer > self.bounds.size.height)
         scale = self.bounds.size.height / (boundingBox.size.height + buffer);
     else if(boundingBox.size.width + buffer > self.bounds.size.width)
         scale = (self.bounds.size.width / boundingBox.size.width) - 0.05;
-    
     
     if (scale > 0)
     {
