@@ -80,7 +80,13 @@ CGFloat const KKMPhoneBoundingBoxbuffer = 30.0f;
     }
     else
     {
-        self.fontSize = 300.f;
+        if ([DeviceUtil hardware] == IPHONE_6_PLUS)
+            self.fontSize = 400.0f;
+        else if ([DeviceUtil hardware] == IPHONE_6)
+            self.fontSize = 360.0f;
+        else
+            self.fontSize = 300.f;
+        
         self.handWritingLineWidth = KKMiPhoneLineWidth;
     }
 }
