@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIButton   *menuButton1;
 @property (weak, nonatomic) IBOutlet UIButton   *menuButton2;
 @property (weak, nonatomic) IBOutlet UIButton   *menuButton3;
+@property (weak, nonatomic) IBOutlet UIButton   *colorLensButton;
+@property (weak, nonatomic) IBOutlet UIButton   *deleteButton;
 
 @property (nonatomic, assign) NSInteger         buttonState;
 @property (nonatomic, strong) NSDictionary      *languageDataDict;
@@ -201,9 +203,39 @@
 
 
 #pragma mark - KKMTracingLetterDrawViewDelegate
--(void)drawViewTapped
+- (void)drawViewTapped
 {
-    self.colorPickerView.hidden = YES;
+    [self hideView:self.colorPickerView];
+}
+
+- (void)touchBegan
+{
+    if (UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM())
+        return;
+    
+    [self hideView:self.menuButton1];
+    [self hideView:self.menuButton2];
+    [self hideView:self.menuButton3];
+    [self hideView:self.colorLensButton];
+    [self hideView:self.deleteButton];
+}
+
+- (void)hideView:(UIView *)view
+{
+   [UIView transitionWithView:view duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:NULL completion:NULL];
+    view.hidden = YES;
+}
+
+- (void)touchEnded
+{
+    if (UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM())
+        return;
+
+    self.menuButton1.hidden = NO;
+    self.menuButton2.hidden = NO;
+    self.menuButton3.hidden = NO;
+    self.colorLensButton.hidden = NO;
+    self.deleteButton.hidden = NO;
 }
 
 @end

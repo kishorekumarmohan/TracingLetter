@@ -924,7 +924,9 @@
                     <navigationItem key="navigationItem" id="YsN-iQ-KK7"/>
                     <connections>
                         <outlet property="backButton" destination="pj5-4f-xBK" id="8XX-T2-aIg"/>
+                        <outlet property="colorLensButton" destination="AVW-sH-EZT" id="FxJ-gb-Nnb"/>
                         <outlet property="colorPickerView" destination="kGA-9i-uZ8" id="jDO-6b-k5i"/>
+                        <outlet property="deleteButton" destination="DPu-5U-3wS" id="QKe-qi-sHA"/>
                         <outlet property="forwardButton" destination="FMf-NM-yuI" id="spI-0c-m9g"/>
                         <outlet property="menuButton1" destination="agC-GY-OIz" id="3cd-Cv-2Cr"/>
                         <outlet property="menuButton2" destination="qEj-98-695" id="gqR-Pm-Qgw"/>

@@ -11,6 +11,8 @@
 @protocol KKMTracingLetterDrawViewDelegate <NSObject>
 
 - (void)drawViewTapped;
+- (void)touchBegan;
+- (void)touchEnded;
 
 @end
 

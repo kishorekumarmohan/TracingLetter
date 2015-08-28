@@ -88,7 +88,6 @@ CGFloat const KKMPhoneBoundingBoxbuffer = 30.0f;
 - (void)drawTracingLetter
 {
     UIFont *font = [UIFont fontWithName:self.fontNameString size:self.fontSize];
-    //NSLog(@"%@", self.letterString);
     self.traceLetterBezierPath = [self.letterString bezierPathWithFont:font bounds:self.bounds];
     [self calculateBoundingBoxPosition];
     [self calculateBoundingBoxScale];
@@ -192,6 +191,7 @@ CGFloat const KKMPhoneBoundingBoxbuffer = 30.0f;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self touchesMoved:touches withEvent:event];
+    [self.delegate touchEnded];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
@@ -209,6 +209,7 @@ CGFloat const KKMPhoneBoundingBoxbuffer = 30.0f;
     
     if([self touchedInsideTracingArea:p withTouchLifeCycleStateTypeEnum:type])
     {
+        [self.delegate touchBegan];
         if (self.countOfInvalidTouchPoints < 2)
         {
             [self updateHandWritingBezierPathWithPoint:p forTouchLifeCycleStateTypeEnum:type];
