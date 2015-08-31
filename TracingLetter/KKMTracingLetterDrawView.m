@@ -20,7 +20,7 @@ typedef enum : NSUInteger {
 } TouchLifeCycleStateTypeEnum;
 
 CGFloat const KKMiPadLineWidth = 25.0f;
-CGFloat const KKMiPhoneLineWidth = 15.0f;
+CGFloat const KKMiPhoneLineWidth = 18.0f;
 
 CGFloat const KKMPadBoundingBoxbuffer = 50.0f;
 CGFloat const KKMPhoneBoundingBoxbuffer = 30.0f;
